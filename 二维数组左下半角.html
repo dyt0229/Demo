@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>二维数组左下半角</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   var a=[];
+   var temp=1;
+   var total=0;
+   for(var i=0;i<5;i++){
+       a[i]=[];
+       for(var j=0;j<5;j++){
+           var sum=temp++;
+           a[i][j]=sum;
+        //    document.write(a[i][j]+" ");
+           if(i>=j){
+               document.write(a[i][j] + " ");
+               total+=sum;
+           }
+       }
+       document.write("<br/>");
+   }
+   document.write("左下三角形的和："+total);
+</script>

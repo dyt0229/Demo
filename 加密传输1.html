@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>升级版加密传输</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+function save(num){
+    var str="";
+    while(num>0){
+        res=num%10;  //1   2    3  4  
+        num=parseInt(num/10);  //432
+        var lastVal=(res+5)%10;  //1进行加密
+        str+=lastVal;
+        // str+=res;
+    }
+    return str;
+}
+document.write(save(1234));//4321
+</script>

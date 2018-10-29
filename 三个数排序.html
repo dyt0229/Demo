@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三个数排序</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script type="text/javascript">
+	function sot(n1,n2,n3){
+           if(n1>n2){
+                   if(n1>n3){
+                           if(n2>n3){
+                                  return document.write(n1+","+n2+","+n3);
+                           }
+                           return document.write(n1+","+n3+","+n2);
+                   }
+                   return document.write(n3+","+n1+","+n2);
+         }
+                  if(n2>n3){
+                          if(n1>n3){
+                                 return  document.write(n2+","+n1+","+n3);
+                          }
+                         return document.write(n2+","+n3+","+n1);
+                  }
+           return document.write(n3+","+n2+","+n1);                
+}
+
+console.log(sot(88,23,124));
+</script>

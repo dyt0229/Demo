@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="num1">
+    <select>
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+    </select>
+    <input type="text" id="num2">
+    <button type="button" id="btn">=</button>
+    <input type="text" id="val" value="" disabled>
+</body>
+
+</html>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+$(function() {
+    let $fu = "";
+    let sum = 0;
+    // sum = parseInt($("#num1").val()) + parseInt($("#num2").val());
+    $("#btn").click(function() {
+        $fu = $("select").val();
+        switch ($fu) {
+            case "+":
+                sum = parseInt($("#num1").val()) + parseInt($("#num2").val());
+                break;
+            case "-":
+                sum = parseInt($("#num1").val()) - parseInt($("#num2").val());
+                break;
+            case "*":
+                sum = parseInt($("#num1").val()) * parseInt($("#num2").val());
+                break;
+            case "/":
+                sum = parseInt($("#num1").val()) / parseInt($("#num2").val());
+                break;
+        }
+        $("#val").val(sum);
+    });
+});
+</script>

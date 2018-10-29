@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>加密传输</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   function save(num){
+       var lastVal=0;
+       var ge= num%10;
+       var shi=parseInt((num/10))%10;
+       var bai=parseInt(num/100)%10;
+       var qian=parseInt(num/1000);
+       var i=calcu(ge);
+       var j=calcu(shi);
+       var k=calcu(bai);
+       var l=calcu(qian);
+       lastVal=i*1000+j*100+k*10+l;
+       return lastVal;
+   }
+   function calcu(val){
+       var res=(val+5)%10;
+       return res;
+   }
+   document.write(save(6234));
+</script>

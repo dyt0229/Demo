@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算m,n组合成的奇数</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   function oddGroup(m,n){
+      var count=0;
+      var num=0;
+      if(m>n){
+          var temp=m;
+              m=n;
+              n=temp;
+      }
+      for(let i=m;i<=n;i++){
+          for(let j=m;j<=n;j++){
+             num=i*10+j;
+                if (i!=j && num % 2 != 0) {
+                  count++;
+                  if(i==0){
+                      num="0"+j;
+                  }
+                  console.info(num + ",");
+              }
+          }
+      }
+      
+      return count;
+   }
+   console.info(oddGroup(0,4));
+</script>

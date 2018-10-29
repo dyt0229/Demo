@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>求最大公约数</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // function maxPub(n1,n2){  //递归
+    //     var n3=n1%n2;
+    //     if(n3==0){
+    //         return n2;
+    //     }else{
+    //         return maxPub(n2,n3);
+    //     }
+    // }
+    // document.write(maxPub(15,12));
+    // function maxPub(n1,n2){
+    //     for(var i=n2;i>=1;i--){    //循环
+    //         if(n1%i==0 &&n2%i==0){
+    //             var res=i;
+    //             break;
+    //         }
+    //     }
+    //     return res;
+    // }
+    // document.write(maxPub(12,15));
+    function maxPub(n1,n2){
+        
+        do{
+            var n3=n1%n2;
+            n1=n2;
+            n2=n3;
+        }while(n3!=0)
+        return n1;
+    }
+    document.write(maxPub(12,15));
+</script>

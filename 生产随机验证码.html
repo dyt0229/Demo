@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生成随机验证码</title>
+</head>
+<body>
+    请输入右侧验证码<input type="text" id="show"/>
+    <span id="yzmSpan">1332</span>
+    <span id="is"></span>
+</body>
+</html>
+<script>
+    function checkMa(n){
+        var str="";
+        for(var i=0;i<n;i++){
+            var num=parseInt(Math.random()*10);
+            str+=num;
+        }
+        return str;
+    }
+    document.getElementById("yzmSpan").onclick=function(){
+       this.innerHTML=checkMa(4);
+    }
+    function isTrue(){
+        if(document.getElementById("show").value==document.getElementById("yzmSpan").innerHTML){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    document.getElementById("show").onkeyup=function(){
+        if(isTrue()){
+            document.getElementById("is").innerHTML = "√"
+        }else{
+            document.getElementById("is").innerHTML = "x"
+        }
+    }
+</script>

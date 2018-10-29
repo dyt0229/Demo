@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>加减乘除求余</title>
+</head>
+<body>
+    <input type="text" id="num1"/>
+    <select id="method">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+        <option>%</option>
+    </select>
+    <input type="text" id="num2"/>
+    <button id="btn">=</button>
+    <input type="text" id="result"/>
+</body>
+</html>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    function calcu(){
+        var res=0;
+        var num1=parseInt($("num1").value);
+        var num2=parseInt($("num2").value);
+        var c=$("method").value;
+        switch(c){
+            case "+" : res= num1+num2;
+            break;
+            case "-" : res= num1-num2;
+            break;
+            case "*" : res= num1*num2;
+            break;
+            case "/" : res= num1/num2;
+            break;
+            case "%" : res= num1%num2;
+            break;
+            default:;
+        }
+        return res;
+    }
+    $("btn").onclick=function(){
+        return $("result").value=calcu();
+    }
+</script>

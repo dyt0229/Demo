@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>5x5方阵求左下半三角的和</title>
+</head>
+<body>
+</body>
+</html>
+<!-- 通过循环按行顺序为一个5×5的二维数组a赋1到25的自然数，然后输出该数组的左下半三角的和。试编程。 -->
+<script type="text/javascript">
+	var temp = 1;
+	var total =0;
+	var arr1 = [];
+	for(var i=0;i<5;i++){
+		arr1[i] = [];
+		for(var j=0;j<5;j++){
+			var sum = temp++;
+			arr1[i][j] = sum;
+			document.write(arr1[i][j]+" ");
+			if(i>=j){
+				total = total+sum;
+			}
+		}
+		document.write("<br/>");
+	}
+	document.write("下半三角形的和 ："+total);
+</script>

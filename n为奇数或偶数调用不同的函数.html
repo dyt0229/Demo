@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>n为奇数或偶数时调用不同的函数</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // function odd(m){
+    //     var sum1=0;
+    //     for(let i=1;i<=m;i+=2){
+    //     sum1+=1/i;
+    //     }
+    //     return sum1;
+    // }
+    // function ou(k){
+    //     var sum2=0;
+    //     for(let j=2;j<=k;j+=2){
+    //         sum2+=1/j;
+    //     }
+    //     return sum2;
+    // }
+    // function show(n){
+    //     if(n%2==0){
+    //         ou(n);
+    //     }
+    //     odd(n);
+    // }
+    // document.write(show(10));
+    function f1(n){
+        var sum=0;
+        if(n%2==0){
+            for(let i=2;i<=n;i+=2){
+                sum+=1/i;
+            }
+        }else{
+            for(let j=1;j<=n;j+=2){
+                sum+=1/j;
+            }
+        }
+        return sum;
+    }
+    document.write(f1(1)+"<br/>");
+    document.write(f1(2) + "<br/>");
+    document.write(f1(3) + "<br/>");
+    document.write(f1(4) + "<br/>");
+    document.write(f1(10));
+</script>

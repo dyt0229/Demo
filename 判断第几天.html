@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>输入年月日判断第几天</title>
+</head>
+<body>
+	<input type="text" id="year"/>年
+	<input type="text" id="month"/>月
+	<input type="text" id="day"/>日 是当年第
+	<input type="text" id="showVal"/>天
+	<button  id="go">出现</button>
+</body>
+</html>
+<script>
+	function days(year,month,date){
+     var days=0;
+     switch(month){
+				case 12:days=days+30;
+				case 11:days=days+31;
+				case 10:days=days+30;
+				case 9:days=days+31;
+				case 8:days=days+31;
+				case 7:days=days+30;
+			  	case 6:days=days+31;
+				case 5:days=days+30;
+				case 4:days=days+31;
+				case 3:days=days+28;
+				case 2:days=days+31;
+                case 1:days=days+date; 
+				default:;  
+      }
+      if(month>2){
+        	if(year%4==0&&year%100!=0 || year%400==0){
+                days=days+1;
+             }                             
+      } 
+     return days;
+}
+
+	function $(id){
+		return document.getElementById(id);
+	}
+    
+
+document.getElementById("go").onclick=function(){
+   var x=parseInt($("year").value);
+   var y=parseInt($("month").value);
+   var z=parseInt($("day").value);
+   document.getElementById("showVal").value =days(x,y,z);
+//    console.info(x);
+}
+	
+    //  console.log(days(2000,12,5));
+
+</script>

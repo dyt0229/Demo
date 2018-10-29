@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>随机5位数</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var num=parseInt(Math.random()*100000);
+    document.write("原本是"+num+"<br/>");
+    console.info(num);
+    var str=num.toString();
+    console.info(str);
+    for(var i in str){
+        document.write(str[i]+"<br/>");
+    }
+    document.write("长度是："+str.length);
+    // var ge=str.substring(1);
+    // console.info(ge);
+    // if(num>0){
+    //     var ge=parseInt(num%10);
+    //     num=parseInt(num/10);
+    // }
+</script>

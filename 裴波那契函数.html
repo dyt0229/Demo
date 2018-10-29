@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>裴波那契数列</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function pblq(n){
+        if(isNaN(n)||n<0){
+            return 0;
+        }
+       if(n<=2){
+           return 1;
+       }else{
+           return pblq(n-2)+pblq(n-1);
+       }
+       return pblq(n);
+    }
+    console.info(pblq(8));
+</script>
