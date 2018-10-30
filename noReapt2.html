@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>noReapt2</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function noReapt2(arr){
+        var arr2=[];
+        var is=true;
+        for(let i in arr){
+            is=true;
+            for(var j in arr2){
+                if(arr2[j]==arr[i]){
+                    is=false;
+                }
+            }
+            if(is){
+                arr2.push(arr[i]);
+            }
+        }
+        return arr2;
+    }
+    var arr=[1,4,2,67,34,4,2,67,89,5,4];
+    document.write(noReapt2(arr));
+</script>

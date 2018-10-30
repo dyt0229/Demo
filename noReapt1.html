@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>去重</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function has(arr,num){
+        for(var i in arr){
+            if(arr[i]==num){
+                return true;
+            }
+        }
+        return false;
+    }
+    function noPeapt(arr1){
+        var arr2=[];
+        for(var i in arr1){
+            if(has(arr2,arr1[i])==false){
+                arr2.push(arr1[i]);
+            }
+        }
+        return arr2;
+    }
+    var arr=[12,4,6,8,4,2,4,18,56,8];
+    document.write(noPeapt(arr));
+</script>
