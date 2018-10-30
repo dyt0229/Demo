@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tenToOther</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function tenToOther(num,n){
+        var temp=num;
+        var arr=[];
+        while(temp>0){
+            var m=temp%n;
+            arr.unshift(m);
+            temp=parseInt(temp/n);
+        }
+        var str="";
+        for(var i in arr){
+            str+=arr[i];
+        }
+        return str;
+    }
+    document.write(tenToOther(14,8));
+</script>
