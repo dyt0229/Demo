@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>randomName</title>
+    <style>
+    *{
+        padding: 0;
+        margin:0;
+    }
+    #btn{
+        display: block;
+        width:100px;
+        height: 50px;
+        margin:50px auto;
+    }
+    #box{
+        width:200px;
+        height: 200px;
+        margin:50px auto;
+        text-align: center;
+        line-height: 200px;
+        font-size: 50px;
+    }
+    </style>
+</head>
+<body>
+   <button id="btn">随机点名</button> 
+   <div id="box"></div>
+</body>
+</html>
+<script>
+    function randomName(){
+        var num=parseInt(Math.random()*20);
+        console.info(num);
+        var nameGroup=["程金星","李赛","杨大哥","Fate","Aris","小白","王军","张楚楚","马佳瑞","大奶牛", "董锦锦", "郭倩", "刘芳利", "冯继恩", "胡凯凯", "闫力青", "顾强", "刘德华", "皮卡丘", "柯南"];
+        
+        return nameGroup[num];
+    }
+    document.getElementById("btn").onclick=function(){
+        document.getElementById("box").innerHTML=randomName();
+    }
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>random5</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function testf(){
+    var num=parseInt(Math.random()*100000);
+    document.write("原来的数是"+num+"<br/>");
+    var temp=num;
+    var arr=[];
+    while(temp>0){
+        var ge=temp%10;
+        arr.unshift(ge);
+        temp=parseInt(temp/10);
+    }
+    document.write("长度是"+arr.length+" ; 按顺序依次是"+arr);
+}
+testf();
+</script>
