@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>totalScores</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var stuScore=[
+        {
+            "stuid":1,
+            "chinese":105,
+            "math":62,
+            "english":118,
+            "subtotal":0
+        },
+        {
+            "stuid": 2,
+            "chinese": 89,
+            "math": 78,
+            "english": 120,
+            "subtotal": 0
+        },
+        {
+            "stuid": 3,
+            "chinese": 86,
+            "math": 64,
+            "english": 80,
+            "subtotal": 0
+        },
+        {
+            "stuid": 4,
+            "chinese": 78,
+            "math": 99,
+            "english": 91,
+            "subtotal": 0
+        },
+        {
+            "stuid": 5,
+            "chinese": 107.5,
+            "math": 97,
+            "english": 70,
+            "subtotal": 0
+        },
+        {
+            "stuid": 6,
+            "chinese": 112,
+            "math": 61,
+            "english": 92,
+            "subtotal": 0
+        },
+        {
+            "stuid": 7,
+            "chinese": 101,
+            "math": 79,
+            "english": 104,
+            "subtotal": 0
+        },
+        {
+            "stuid": 8,
+            "chinese": 71,
+            "math": 72,
+            "english": 105,
+            "subtotal": 0
+        },
+        {
+            "stuid": 9,
+            "chinese": 56,
+            "math": 68,
+            "english": 61,
+            "subtotal": 0
+        },
+        {
+            "stuid": 10,
+            "chinese": 98,
+            "math": 83,
+            "english": 77,
+            "subtotal": 0
+        }
+    ];
+    //计算总成绩
+    for(var i in stuScore){
+        stuScore[i].subtotal=stuScore[i].chinese+stuScore[i].math+stuScore[i].english;
+        // console.info(stuScore[i].subtotal);
+    }
+    //按总成绩从大到小排列
+    for(var i=0;i<=stuScore.length;i++){
+        for(var j=0;j<stuScore.length-1-i;j++){
+            if(stuScore[j].subtotal<stuScore[j+1].subtotal){
+                var temp=stuScore[j];
+                stuScore[j]=stuScore[j+1];
+                stuScore[j+1]=temp;
+            }
+        }
+    }
+    console.info(stuScore);
+    for(var i in stuScore){
+        document.write("学号"+stuScore[i].stuid+","+"语文成绩"+stuScore[i].chinese+","+"数学成绩"+stuScore[i].math+","+"英文成绩"+stuScore[i].english+"总成绩" + stuScore[i].subtotal + "<br/>");
+    }
+    console.info(stuScore[0].stuid);
+    document.write("<br/>");
+    //统计各学科的第一名并输出其成绩和学号
+    //语文
+    var maxChinese=stuScore[0];
+    for(var i=1;i<stuScore.length;i++){
+        if(stuScore[i].chinese>maxChinese.chinese){
+            maxChinese=stuScore[i];
+        }
+    }
+    document.write("语文成绩第一的学生学号和成绩分别是"+maxChinese.stuid+","+maxChinese.chinese+"<br/>");
+    //数学
+    var maxMath = stuScore[0];
+        for (var i = 1; i < stuScore.length; i++) {
+            if (stuScore[i].math > maxMath.math) {
+                maxMath = stuScore[i];
+            }
+        }
+        document.write("数学成绩第一的学生学号和成绩分别是" + maxMath.stuid + "," + maxMath.math+"<br/>");
+    //英语
+    var maxEnglish = stuScore[0];
+        for (var i = 1; i < stuScore.length; i++) {
+            if (stuScore[i].english > maxEnglish.english) {
+                maxEnglish = stuScore[i];
+            }
+        }
+        document.write("英文成绩第一的学生学号和成绩分别是" + maxEnglish.stuid + "," + maxChinese.english);
+    
+</script>
