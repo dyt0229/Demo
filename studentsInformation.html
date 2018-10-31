@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>studentsInformation</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var students=[
+        {
+            "stuid":"001",
+            "id":142725199308120035,
+            "age":25,
+            "sex":"girl",
+            "profession":"design"
+        },
+        {
+            "stuid": 002,
+            "id": 142725199208120035,
+            "age": 26,
+            "sex": "boy",
+            "profession": "design"
+        },
+        {
+            "stuid": 003,
+            "id": 142725199405120035,
+            "age": 24,
+            "sex": "girl",
+            "profession": "design"
+        },
+        {
+            "stuid": 004,
+            "id": 142725199402020012,
+            "age": 24,
+            "sex": "boy",
+            "profession": "design"
+        }
+    ];
+    function intro(arr){
+        for(let i in arr){
+            document.write("学生的信息分别是"+arr[i].stuid+"<br/>"+arr[i].id+ "<br/>"+arr[i].age+ "<br/>"+arr[i].sex+ "<br/>"+arr[i].profession+"<br/>");
+            
+        }
+   } 
+   intro(students);
+</script>
