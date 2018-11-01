@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sliceAndsubstring</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //数组中slice的方法
+    var arr=[1,2,3,4,5,6,7,8,9,10];
+    var arr1=arr.slice(3,5);
+    console.info(arr);
+    console.info(arr1);  //返回4,5 返回的是从下标3到下标5的值，含3不含5
+    //字符串中slice的方法
+    var str="abcdefg";
+    var str1=str.slice(3,5);
+    var str2=str.substring(3,5);  //返回de 返回的是下标3到下标5的字符，含3不含5
+    var str3=str.slice(-4);   //slice负数返回的是从后往前数共打印出4位defg
+    var str4=str.substring(-2);  //substring不支持从后往前数，返回的是原字符串
+    console.info(str);
+    console.info(str1);
+    console.info(str2);
+    console.info(str3);
+    console.info(str4);
+</script>
