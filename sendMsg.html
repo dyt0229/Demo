@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sendMsg</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #box{
+            width:200px;
+            height: 200px;
+            background-color:pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <input type="text" id="before"/>
+    <input type="button"  id="btn" value="发送"/>
+</body>
+</html>
+<script>
+    var arr=[];
+    var sensitive=["sb","操","nnd"];
+    function sendMsg(){
+        var str=document.getElementById("before").value;
+        //1、不能重复发言
+        if(arr.indexOf(str)>-1){
+            alert("亲，不要做复读机噢！");
+            return;
+        }
+        //不能含敏感词汇
+        for(let i in sensitive){
+            if(str.indexOf(sensitive[i])>-1){
+                alert("亲，不能说脏话");
+                return;
+            }
+        }
+        arr.push(str);
+    
+    document.getElementById("box").innerHTML+=str+"<br/>";
+    document.getElementById("before").value =" ";
+   } 
+   document.getElementById("btn").onclick=function(){
+       sendMsg();
+   }
+</script>
