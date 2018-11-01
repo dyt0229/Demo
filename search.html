@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>search</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var str="what Are you 弄啥嘞";
+    var str1=str.search("are"); //找不到返回-1，区分大小写
+    console.info(str1);
+    var str2=str.search(/are/i);  //找到，返回开始的第一个下标，正则表达式不区分大小写
+    console.info(str2);
+</script>
