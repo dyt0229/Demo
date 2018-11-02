@@ -9,31 +9,72 @@
 <body>
     请输入原始字符串：
     <input type="text" id="str"/>
+    <br/>
     <button id="btn">压缩</button>
-    压缩后的字符串：
-    <input type="text" id="result" disabled/>
+    压缩后的字符串：<input type="text" id="result"/>
+    <br/>
+    <button id="btn1">去重</button>
+    去重后的字符串：<input type="text" id="result1" />
+    <br/>
+    <button id="btn2">解压</button>
+    解压后的字符串：<input type="text" id="result2" />
+
 </body>
 </html>
 <script>
-    
+    //压缩
     function compress(){
         var str=document.getElementById("str").value;
+        //获取第一个字母并设为当前字符
         var currChar=str.charAt(0);
         var count=0;
         var result="";
         for(var i=0;i<str.length;i++){
+            //遍历累加
             if(str.charAt(i)==currChar){
                 count++;
             }else{
+                //不再相等时，连接当前字符和累加的数字，并将新的字符设为当前值，累加数字归1
                 result+=currChar+count;
                 currChar=str.charAt(i);
                 count=1;
             }
         }
+        //遍历完所有，连接到一起
         result+=currChar+count;
         document.getElementById("result").value=result;
     }
+    //去重 只针对重复数字小于等于9以内的去重方法
+    function noReapt(){
+        var nores= document.getElementById("result").value;
+        var str1="";
+        for(let i=0;i<nores.length;i+=2){
+            //获取到所有奇数位（下标为偶数）的字符，相连接
+            var currChar=nores.charAt(i);
+            str1+=currChar;
+        }
+        document.getElementById("result1").value=str1;
+    }
+    //解压
+    function unCompress(){
+        var nores= document.getElementById("result").value;
+        var str2="";
+        for(let i=0;i<nores.length;i+=2){
+            var currChar=nores.charAt(i);
+            var count=nores.charAt(i+1);
+            for(var j=0;j<count;j++){
+                str2+=currChar;
+            }
+        }
+        document.getElementById("result2").value=str2;
+    }
     document.getElementById("btn").onclick=function(){
         compress();
+    }
+    document.getElementById("btn1").onclick = function () {
+        noReapt();
+    }
+    document.getElementById("btn2").onclick = function () {
+        unCompress();
     }
 </script>
