@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sensitiveFilter</title>
+    <style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    body{
+    text-align: center;
+    }
+    #box{
+        width:200px;
+        height: 200px;
+        border:1px solid black;
+        margin:20px auto;
+    }
+    #msg{
+        display: inline-block;
+        width:160px;
+        height: 40px;
+        margin:10px auto;
+    }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <input type="text" id="msg"/>
+    <input type="button" value="send" id="btn"/>
+</body>
+</html>
+<script>
+    var arr=[];
+    var sensitive=["sb","操"];
+    function sendMsg(){
+        
+        var msg=document.getElementById("msg").value;
+        
+        if (arr.indexOf(msg)>-1) {
+            alert("亲，不要做复读机噢！");
+            return;
+        }
+            for(let i in sensitive){
+               if(msg.indexOf(sensitive[i])>-1){
+               msg= msg.replace(/sb|操/gi,"*");
+                // alert("亲，不要说脏话哦");
+                // return;
+            }
+         }   
+            arr.push(msg);
+        
+        document.getElementById("box").innerHTML+= msg+"<br/>";
+        document.getElementById("msg").value=" ";
+        
+    
+}
+    document.getElementById("btn").onclick=function(){
+        sendMsg();
+    }
+</script>
