@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>compressString</title>
+</head>
+<body>
+    请输入原始字符串：
+    <input type="text" id="str"/>
+    <button id="btn">压缩</button>
+    压缩后的字符串：
+    <input type="text" id="result" disabled/>
+</body>
+</html>
+<script>
+    
+    function compress(){
+        var str=document.getElementById("str").value;
+        var currChar=str.charAt(0);
+        var count=0;
+        var result="";
+        for(var i=0;i<str.length;i++){
+            if(str.charAt(i)==currChar){
+                count++;
+            }else{
+                result+=currChar+count;
+                currChar=str.charAt(i);
+                count=1;
+            }
+        }
+        result+=currChar+count;
+        document.getElementById("result").value=result;
+    }
+    document.getElementById("btn").onclick=function(){
+        compress();
+    }
+</script>
