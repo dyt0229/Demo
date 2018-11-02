@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>randomColor</title>
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+}
+#btn{
+    width: 100px;
+    height: 30px;
+    margin:20px;
+}
+#box{
+    width: 200px;
+    height: 200px;
+    background: pink;
+}
+body{
+    background: green;
+}
+</style>
+<body>
+    
+    <button id="btn">点击换颜色</button>
+    <!-- <div id="box"></div> -->
+</body>
+</html>
+<script>
+    function randomColor() {
+        var str="";
+        for(var i=0;i<9;i++){
+            var a =String.fromCharCode(random(48,57));
+            var b =String.fromCharCode(random(97,102));
+        }
+        str+=a+b;
+        var str1="";
+        for(var i=0;i<6;i++){
+            var x =parseInt(Math.random()*str.length);
+            str1+=str[x];
+        }
+        // return "#"+str1;
+        // document.getElementById("box").style.background="#"+str1;
+        document.getElementsByTagName("body")[0].style.background = "#" + str1;
+    }
+    function random(x,y) {
+        return parseInt(Math.random()*(y-x+1)+x);
+    }
+    
+    document.getElementById("btn").onclick=function(){
+        randomColor();
+    }
+</script>
