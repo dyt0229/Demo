@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mixSecuCode</title>
+</head>
+<body>
+    <input type="text" id="show" disabled/>
+    <button id="btn">点击生成验证码</button>
+    
+</body>
+</html>
+<script>
+    function randomMa(){
+        var str="";
+        for(var i=0;i<=9;i++){
+            var a = String.fromCharCode(random(48,57));
+            var b = String.fromCharCode(random(65,90));
+            var c = String.fromCharCode(random(97,122));
+            str+=a+b+c;
+        }
+        var str1="";
+        for(i=0;i<4;i++){
+            var x=parseInt(Math.random()*str.length);
+            str1+=str[x];
+        }
+        document.getElementById("show").value=str1;
+    }
+    function random(x,y){
+        return parseInt(Math.random()*(y-x+1)+x);
+    }
+    document.getElementById("btn").onclick=function(){
+        randomMa();
+    }
+</script>
