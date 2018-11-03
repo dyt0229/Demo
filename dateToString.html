@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dateToString</title>
+</head>
+<body>
+    <input type="button" id="btn" value="test"/>
+</body>
+</html>
+<script>
+    //字符串转时间戳
+    //Date.parse(日期字符串或日期对象) //返回自1970年至参数截止日期的毫秒数
+    //Date转换为字符串
+    /*
+    toTimeString() 把Date对象的时间部分转换为字符串
+    toDateString() 把Date对象的日期部分转换为字符串
+    toUTCString() 根据世界时，把Date对象转换为字符串
+    toLocaleString() 根据本地时间格式，把Date对象转换为字符串
+    toLocaleTimeString() 根据本地时间格式，把Date对象的时间部分转换为字符串
+    toLocaleDateString() 根据本地时间格式，把Date对象的日期部分转换为字符串
+    */
+    console.info(Date.parse("12 25,2018 00:00:00"));
+    console.info(Date.parse(2018, 12, 25, 00, 00, 00));
+    console.info(Date.parse(2018-12-25));
+    console.info(Date.parse("12 25,2018"));
+function testf(){
+    var d = new Date();
+    var str=d.toTimeString();
+    document.write("toTimeString======"+str+"<br/>");
+
+    var str = d.toDateString();
+    document.write("toDateString======" + str + "<br/>");
+
+    var str = d.toUTCString();
+    document.write("toUTCString======" + str + "<br/>");
+
+    var str=d.toLocaleString();
+    document.write("toLocaleString======="+str+"<br/>");
+
+    var str = d.toLocaleTimeString();
+    document.write("toLocaleTimeString=======" + str + "<br/>");
+
+    var str = d.toLocaleDateString();
+    document.write("toLocaleDateString=======" + str + "<br/>");
+}
+document.getElementById("btn").onclick=function(){
+    testf();
+}
+</script>
