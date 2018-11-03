@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>date</title>
+</head>
+<body>
+    <input type="button" id="btn" value="测试"/>
+    <input type="button" id="btn1" value="测试set" />
+</body>
+</html>
+<script>
+    var d1 = new Date(86400000);
+    document.write(d1);
+    
+    function testf(){
+        var d =new Date();
+        // document.write(d);
+        var year=d.getFullYear();
+        var month=d.getMonth()+1;
+        var date=d.getDate();
+        var hours=d.getHours();
+        var minutes=d.getMinutes();
+        var seconds=d.getSeconds();
+        var day=d.getDay();
+        var str=year+"年"+month+"月"+date+"日"+hours+":"+minutes+":"+seconds+""+getWeek(day);
+        document.write(str);
+    }
+    function getWeek(num){
+        switch(num){
+            case 0: return "星期日";
+            case 1: return "星期一";
+            case 2: return "星期二";
+            case 3: return "星期三";
+            case 4: return "星期四";
+            case 5: return "星期五";
+            case 6: return "星期六";
+        }
+    }
+    function tsetSet(){
+        var d = new Date();
+        // document.write(d);
+        d.setMonth(13);
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        var date = d.getDate();
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+        var seconds = d.getSeconds();
+        var day = d.getDay();
+        var str = year + "年" + month + "月" + date + "日" + hours + ":" + minutes + ":" + seconds + "" + getWeek(day);
+        document.write(str);
+    }
+    document.getElementById("btn").onclick=function(){
+        testf();
+    }
+    document.getElementById("btn1").onclick = function () {
+            tsetSet();
+        }
+</script>
