@@ -40,11 +40,16 @@
         }
     }
     function tsetSet(){
-        var d = new Date();
+        // var d = new Date();
+        // var d=new Date("12 25,2012 00:00:00")
+        // var d=new Date("1 5,2018");
+        // var d = new Date(2015,12,25,15,15,15);
+        var d =new Date(2018,5,20);
         // document.write(d);
-        d.setMonth(13);
+        // d.setMonth(13);
         var year = d.getFullYear();
-        var month = d.getMonth() + 1;
+        var month = d.getMonth();
+        // var month = d.getMonth() +1;
         var date = d.getDate();
         var hours = d.getHours();
         var minutes = d.getMinutes();
