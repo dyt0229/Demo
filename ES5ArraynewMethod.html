@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>newMehod</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var arr=[12,23,34,45,56];
+    //indexOf
+    // console.info(arr.indexOf(23));
+
+    //forEach
+    // arr.forEach(alert);
+    // arr.forEach(arrInc);
+    // console.info(arr);
+
+    //map
+    //var arr1=arr.map(arrSqr);
+    //console.info(arr);
+    //console.info(arr1);
+
+    //filter
+    var arr1=[1,53,-45,24,-1,76];
+    var arr2= arr1.filter(gtZero);
+    console.info(arr1);
+    console.info(arr2);
+
+
+
+    function arrInc(num,index,arr){
+        arr[index]=(num*1.3).toFixed(2);
+    }
+    function arrSqr(n){
+        return n*n;
+    }
+    function gtZero(num){
+        return num>0;
+    }
+    
+
+</script>

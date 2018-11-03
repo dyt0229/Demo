@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="testf()" />
+</body>
+
+</html>
+<script type="text/javascript" src="js/dateTools.js"></script>
+<script type="text/javascript">
+
+    function testf() {
+        var d1 = new Date("11 1,2018 23:15:12");
+        var d2 = new Date("12 2,2019 1:12:12");
+
+        //var t = differentDate2(d1,d2);
+        //console.log(t);
+
+        //var str = toDateString(d1,",");	
+        //console.log(str);
+
+        var str = toDateTimeString(d1, "-");
+        console.log(str);
+
+    }
+
+</script>
