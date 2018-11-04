@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>secondsClock</title>
+</head>
+<body>
+    <span id="hoursSpan">00</span>:
+    <span id="minutesSpan">00</span>:
+    <span id="secondsSpan">00</span>:
+    <span id="mSecondsSpan">00</span>
+    <br />
+    <input type="button" value="开始" onclick="startTime()" />
+    <input type="button" value="暂停" onclick="pauseTime()" />
+    <input type="button" value="重置" onclick="resetTime()" />
+</body>
+</html>
+<script type="text/javascript" src=js/dateTools.js> </script>
+<script>
+    var mseconds=0;
+    var seconds=0;
+    var minutes=0;
+    var hours=0;
+    var myTimer=null;
+    function startTime(){
+        if(myTimer!=null){
+            return;
+        }
+        myTimer=setInterval(function(){
+            mseconds++;
+            if(mseconds>=100){
+                seconds++;
+                mseconds=0;
+                if(seconds>=60){
+                    minutes++;
+                    seconds=0;
+                    if(minutes>=60){
+                        hours++;
+                        minutes=0;
+                    }
+                }
+            }
+            document.getElementById("mSecondsSpan").innerHTML= mseconds<10?"0"+mseconds:mseconds;
+            document.getElementById("secondsSpan").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            document.getElementById("minutesSpan").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("hoursSpan").innerHTML = hours < 10 ? "0" + hours : hours;
+        },10)
+    }
+    function pauseTime(){
+        if(myTimer!=null){
+            clearInterval(myTimer);
+            myTimer=null;
+        }
+    }
+    function resetTime(){
+        if(myTimer!=null){
+            clearInterval(myTimer);
+            myTimer=null;
+        }
+        mseconds=0;
+        seconds=0;
+        minutes=0;
+        hours0;
+        document.getElementById("mSecondsSpan").innerHTML = mseconds < 10 ? "0" + mseconds : mseconds;
+        document.getElementById("secondsSpan").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+        document.getElementById("minutesSpan").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("hoursSpan").innerHTML = hours < 10 ? "0" + hours : hours;
+    }
+</script>

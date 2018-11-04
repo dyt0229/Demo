@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clock</title>
+</head>
+<body>
+    北京时间：
+    <span id="show"></span>
+</body>
+</html>
+<script type="text/javascript" src=js/dateTools.js></script>
+<script>
+    function show(){
+        var d = new Date();
+        var str= toDateTimeString(d,"-");
+        document.getElementById("show").innerHTML=str;
+    }
+    function showTime(){
+        setInterval(show,1000);
+    }
+    window.onload=function(){
+        showTime();
+    }
+</script>
