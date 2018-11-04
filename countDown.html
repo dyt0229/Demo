@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双十一倒计时</title>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>
+<script>
+    var myTimer=null;
+    myTimer=setInterval(go,1000);
+    function go(){
+        var box=document.getElementById("box");
+        var startTime= new Date();
+        var endTime=new Date("2018-11-11 00:00:00");
+        var c=endTime-startTime;
+        
+        //c是获取到的两个时间差，单位为毫秒
+        c=c/1000;
+        var sec=parseInt(c%60);
+        var min=parseInt(c/60)%60;
+        var hour=parseInt(c/3600)%24;
+        var day=parseInt(c/(3600*24));
+        if(c<=0){
+            clearInterval(myTimer);
+            box.innerHTML="该倒计时已经结束";
+        }
+        box.innerHTML="距离双十一倒计时"+day+"天"+hour+"小时"+min+"分钟"+sec+"秒";
+    }
+    
+</script>
