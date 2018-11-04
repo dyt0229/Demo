@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>digitalClock</title>
+</head>
+<body>
+    <img id="hoursShi" src="imgs/0.png" />
+    <img id="hoursGe" src="imgs/0.png" />
+    :
+    <img id="minutesShi" src="imgs/0.png" />
+    <img id="minutesGe" src="imgs/0.png" />
+    :
+    <img id="secondsShi" src="imgs/0.png" />
+    <img id="secondsGe" src="imgs/0.png" />
+</body>
+</html>
+<script type="text/javascript" src=js/dateTools.js></script>
+<script>
+    function changeTime(){
+    var d =new Date();
+    var h=d.getHours();
+    var m=d.getMinutes();
+    var s=d.getSeconds();
+    var hoursShi=parseInt(h/10);
+    var hoursGe=h%10;
+    var minutesShi=parseInt(m/10);
+    var minutesGe=m%10;
+    var secondsShi=parseInt(s/10);
+    var secondsGe=s%10;
+    document.getElementById("hoursShi").src="imgs/"+ hoursShi+".png";
+    document.getElementById("hoursGe").src = "imgs/" + hoursGe + ".png";
+    document.getElementById("minutesShi").src = "imgs/" + minutesShi + ".png";
+    document.getElementById("minutesGe").src = "imgs/" + minutesGe + ".png";
+    document.getElementById("secondsShi").src = "imgs/" + secondsShi + ".png";
+    document.getElementById("secondsGe").src = "imgs/" + secondsGe + ".png";
+    }
+    window.onload=function(){
+        setInterval(changeTime,1000);
+    }
+</script>
