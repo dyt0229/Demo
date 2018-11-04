@@ -16,17 +16,25 @@
 <script type="text/javascript">
 
     function testf() {
-        var d1 = new Date("11 1,2018 23:15:12");
-        var d2 = new Date("12 2,2019 1:12:12");
-
+        var d1 = new Date("1 1,2018 23:15:12");
+        var d2 = new Date("1 2,2018 1:12:12");
+        var d3 = new Date();
         //var t = differentDate2(d1,d2);
         //console.log(t);
 
         //var str = toDateString(d1,",");	
         //console.log(str);
-
         var str = toDateTimeString(d1, "-");
+        // var str = toDateTimeString(d1,"-");
+        var str2 =toDateTimeString(d2,"/");
+        var str3 =toDateTimeString(d3);
+        // var str4=toDateString(d3,"-");
+        var str5= differentDate2(d1,d2);
         console.log(str);
+        console.info(str2);
+        console.info(str3);
+        // document.write(str5);
+        // console.info(str4);
 
     }
 

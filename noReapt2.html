@@ -29,4 +29,15 @@
     }
     var arr=[1,4,2,67,34,4,2,67,89,5,4];
     document.write(noReapt2(arr));
+
+    function noReapt3(arr){
+        var val=[];
+        for(let i=0;i<arr.length;i++){
+            if(val.indexOf(arr[i])==-1){
+                val.push(arr[i]);
+            }
+        }
+        return val;
+    }
+    document.write("<br/>"+noReapt3(arr));
 </script>
