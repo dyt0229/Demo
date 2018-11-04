@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <table>
+            <tr>
+                <td>工号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td colspan="2">操作</td>
+            </tr>
+            <tr>
+                <td id="empId">007</td>
+                <td id="empName">张三疯</td>
+                <td id="empSex">男</td>
+                <td>
+                    <input type="button" value="修改" onclick="modifyinfo()" />
+                </td>
+                <td>
+                    <input type="button" value="删除" />
+                </td>
+            </tr>
+            <tr>
+                <td>008</td>
+                <td>张四疯</td>
+                <td>女</td>
+                <td>
+                    <input type="button" value="修改" onclick="modifyinfo()" />
+                </td>
+                <td>
+                    <input type="button" value="删除" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    function modifyinfo(){
+        var empObj={
+            empId:document.getElementById("empId").innerHTML,
+            empName: document.getElementById("empName").innerHTML,
+            empSex: document.getElementById("empName").innerHTML
+        }
+        //将数据发送至模态窗口
+        var val=window.showModalDialog("editEmpByJson.html",empObj,"dialogWidth=500px;dialogHeight=300px");
+
+        document.getElementById("empId").innerHTML=val.empId;
+        document.getElementById("empName").innerHTML = val.empName;
+        document.getElementById("empSex").innerHTML = val.empSex;
+    }
+</script>
