@@ -29,3 +29,27 @@
     </div>
 </body>
 </html>
+<script>
+    //模态窗口接收参数：window.dialogArguments
+    //模态窗口返回数据：window.returnValue
+    
+    //初始化
+    function initUI(){
+        //获取父窗口传来的数据
+        var empObj=window.dialogArguments;
+
+        document.getElementById("empIdText").value=empObj.empId;
+        document.getElementById("empNameText").value = empObj.empName;
+        document.getElementById("empSexText").value = empObj.empSex;
+    }
+    function saveData(){
+        var empObj = {
+            empId:document.getElementById("empIdText").value,
+            empName:document.getElementById("empNameText").value,
+            empSex: document.getElementById("empSexText").value
+        }
+        //returnValue是当前窗口的返回值，模态窗口的返回值
+        window.returnValue=empObj;
+        window.close();
+    }
+</script>

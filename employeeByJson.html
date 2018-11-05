@@ -18,12 +18,12 @@
             <tr>
                 <td id="empId">007</td>
                 <td id="empName">张三疯</td>
-                <td id="empSex">男</td>
+                <td>男</td>
                 <td>
-                    <input type="button" value="修改" onclick="modifyinfo()" />
+                    <input type="button" value="修改" onclick="modifyinfo(this)" />
                 </td>
                 <td>
-                    <input type="button" value="删除" />
+                    <input type="button" value="删除" onclick="deletemp(this)"/>
                 </td>
             </tr>
             <tr>
@@ -31,10 +31,10 @@
                 <td>张四疯</td>
                 <td>女</td>
                 <td>
-                    <input type="button" value="修改" onclick="modifyinfo()" />
+                    <input type="button" value="修改" onclick="modifyinfo(this)" />
                 </td>
                 <td>
-                    <input type="button" value="删除" />
+                    <input type="button" value="删除" onclick="deletemp(this)"/>
                 </td>
             </tr>
         </table>
@@ -42,17 +42,29 @@
 </body>
 </html>
 <script>
-    function modifyinfo(){
+    function modifyinfo(btn){
+        var trDom = btn.parentNode.parentNode;
+        var tds=trDom.children;
         var empObj={
-            empId:document.getElementById("empId").innerHTML,
-            empName: document.getElementById("empName").innerHTML,
-            empSex: document.getElementById("empName").innerHTML
+            empId:tds[0].innerHTML,
+            empName: tds[1].innerHTML,
+            empSex: tds[2].innerHTML
         }
         //将数据发送至模态窗口
+        //showModalDialog()打开一个模态窗口
+        //   第一个参数：要打开的html文件
+        //   第二个参数：传给子页面的数据（参数）
+        //   第三个参数：模态窗口页面
         var val=window.showModalDialog("editEmpByJson.html",empObj,"dialogWidth=500px;dialogHeight=300px");
 
-        document.getElementById("empId").innerHTML=val.empId;
-        document.getElementById("empName").innerHTML = val.empName;
-        document.getElementById("empSex").innerHTML = val.empSex;
+        tds[0].innerHTML=val.empId;
+        tds[1].innerHTML = val.empName;
+        tds[2].innerHTML = val.empSex;
+    }
+    function deletemp(btn){
+        if(confirm("亲，你真的要删除吗？")==true){
+            var trDom=btn.parentNode.parentNode;
+            trDom.parentNode.removeChild(trDom);
+        }
     }
 </script>
