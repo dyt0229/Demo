@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mouseAsTitle</title>
+    <style>
+        #box{
+            width:150px;
+            height: 30px;
+            background-color: pink;
+            padding: 5px;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <a>重庆公交坠江事件</a>
+    <br/>
+    <br />
+    <a>易烊千玺最帅</a>
+    <br />
+    <br />
+    <a>高晓松最美</a>
+    <div id="box">这是一条真实的新闻</div>
+</body>
+</html>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    function showTitle(){
+        var as=document.getElementsByTagName("a");
+        for(var i=0;i<as.length;i++){
+            as[i].onmouseover=function(event){
+                var evt=event || window.event;
+                $("box").style.left=evt.pageX+"px";
+                $("box").style.top=evt.pageY+10+"px";
+                $("box").style.display="block";
+            }
+            as[i].onmouseout=function(){
+                $("box").style.display="none";
+            }
+        }
+    }
+    window.onload=function(){
+        showTitle();
+    }
+</script>
