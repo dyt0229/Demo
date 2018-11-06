@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    *{
+        padding: 0;
+        margin:0;
+    }
+    #box{
+        width:300px;
+        height: 30px;
+        border: 1px solid black;
+        float: left;
+    }
+    /* #box::after{
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+        overflow: hidden;
+        visibility: hidden;
+    } */
+    #kong{
+        clear: both;
+    }
+    #progress{
+        width:0px;
+        height: 30px;
+        background-color: red;
+    }
+    span{
+        float: left;
+        height: 30px;
+        line-height: 30px;
+    }
+    </style>
+</head>
+<body>
+    <div>
+    <div id="box">
+        <div id="progress"></div>
+    </div>
+    <span id="spanId">0%</span>
+    </div>
+    <br/>
+    <div id="kong"></div>
+    <input type="button" value="开始加载" id="btn"/>
+</body>
+</html>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    function go(){
+        var width=0;
+        var myTimer=setInterval(function(){
+            width+=2;
+            if(width>=300){
+                width=300;
+                clearInterval(myTimer);
+            }
+            $("spanId").innerHTML=parseInt((width*100)/300)+"%";
+            $("progress").style.width=width+"px";
+        },20);
+    }
+    $("btn").onclick=function(){
+        go();
+    }
+</script>
