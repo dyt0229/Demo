@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <span id="hourSpan">1</span>小时
+    <span id="minSpan">1</span>分
+    <span id="secSpan">10</span>秒
+    <span id="msecSpan">0</span>毫秒
+    <br/>
+    <input type="button" value="开始" id="start"/>
+    <input type="button" value="暂停" id="pause" />
+    <input type="button" value="重置" id="reset" />
+</body>
+</html>
+<script type="text/javascript">
+    function $(id){
+        return document.getElementById(id);
+    }
+    var mSeconds=0;
+    var seconds=10;
+    var minutes=1;
+    var hours=1;
+    var myTimer=null;
+    function initUI(){
+        mSeconds = 0;
+        seconds = 10;
+        minutes = 1;
+        hours = 1;
+        $("msecSpan").innerHTML = mSeconds < 10 ? "0" + mSeconds : mSeconds;
+        $("secSpan").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+        $("minSpan").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        $("hourSpan").innerHTML = hours < 10 ? "0" + hours : hours;
+    }
+    function backTime(){  
+        myTimer=setInterval(function(){
+            mSeconds--;
+            if(mSeconds<0){
+                seconds--;
+                if(seconds<0){
+                    minutes--;
+                    if(minutes<0){
+                        hours--;
+                        if(hours<0){
+                            clearInterval(myTimer);
+                            return;
+                        }else{
+                            minutes=59;
+                            seconds=59;
+                            mSeconds=99;
+                        }
+                    }else{
+                        seconds=59;
+                        mSeconds=59;
+                    }
+                }else{
+                    mSeconds=99;
+                }
+            }
+            $("msecSpan").innerHTML= mSeconds<10?"0"+ mSeconds: mSeconds;
+            $("secSpan").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            $("minSpan").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            $("hourSpan").innerHTML = hours < 10 ? "0" + hours : hours;
+        },10);
+    }
+    function pauseTime(){
+        if(myTimer!=null){
+            clearInterval(myTimer);
+            myTimer=null;
+        }
+    }
+    function resetTime(){
+        if(myTimer!=null){
+            clearInterval(myTimer);
+            myTimer=null;
+        }
+        
+    }
+    $("start").onclick=function(){
+        backTime();
+    }
+    $("pause").onclick = function () {
+        pauseTime();
+    }
+    $("reset").onclick = function () {
+        resetTime();
+        initUI();
+    }
+</script>
