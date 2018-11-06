@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tableInc</title>
+</head>
+<body>
+    <div id="box">
+        <table id="t">
+            <tr>
+                <td>工号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td colspan="2">操作</td>
+            </tr>
+            <tr>
+                <td>007</td>
+                <td>张三疯</td>
+                <td>男</td>
+                <td>
+                    <input type="button" value="修改" onclick="modifyinfo(this)" />
+                </td>
+                <td>
+                    <input type="button" value="删除" onclick="deleteYuangong(this)" />
+                </td>
+            </tr>
+            <tr>
+                <td>008</td>
+                <td>张四疯</td>
+                <td>女</td>
+                <td>
+                    <input type="button" value="修改" onclick="modifyinfo(this)" />
+                </td>
+                <td>
+                    <input type="button" value="删除" onclick="deleteYuangong(this)" />
+                </td>
+            </tr>
+            <tr>
+                <td>009</td>
+                <td>张五疯</td>
+                <td>男</td>
+                <td>
+                    <input type="button" value="修改" onclick="modifyinfo(this)" />
+                </td>
+                <td>
+                    <input type="button" value="删除" onclick="deleteYuangong(this)" />
+                </td>
+            </tr>
+        </table>
+        <input type="button" value="测试" onclick="testf()" />
+    </div>
+</body>
+</html>
+<script>
+ function $(id){
+     return document.getElementById(id);
+ }
+ function testf(){
+     //浏览器经过对HTML代码的解释后，table标签的子元素是tboy
+     //表格的行和列
+     //$("t").rows[0].cells[0].innerHTML
+     //插入
+     var newRow=$("t").insertRow();
+     //第一种写法
+     //var cellId=newRow.insertCell();
+     //cellId.innerHTML="010";
+     //新写法
+     newRow.insertCell().innerHTML="010";
+     newRow.insertCell().innerHTML = "Fate"; 
+     newRow.insertCell().innerHTML = "男";
+     newRow.insertCell().innerHTML = '<input type="button" value="修改" onclick="modifyinfo(this)" />';
+     newRow.insertCell().innerHTML = '<input type="button" value="删除" onclick="deleteYuangong(this)" />';
+ }
+ function deleteYuangong(btn){
+     if(confirm("确认要删除吗？")==true){
+         var trDom=btn.parentNode.parentNode;
+         trDom.parentNode.removeChild(trDom);
+         //表格的删除
+        //  $("t").deleteRow(2);
+        //  $("t").rows[2].deleteCell(1);
+     }
+ }
+</script>
