@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>changeOtherColor</title>
+</head>
+<body>
+    <ul>
+        <li id="liId">我是第一行</li>
+        <li>我是第二行</li>
+        <li>我是第三行</li>
+        <li>我是第四行</li>
+        <li>我是第五行</li>
+        <li>我是第六行</li>
+        <li>我是第七行</li>
+        <li>我是第八行</li>
+    </ul>
+    <input type="button" id="btn" value="测试"/>
+</body>
+</html>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    function brushColr() {
+        var ulDom=$("liId").parentNode;
+        var lis=ulDom.children;
+        for(var i=0;i<lis.length;i++){
+            if(i%2==0){
+                lis[i].style.backgroundColor="pink";
+            }else{
+            lis[i].style.backgroundColor="red";
+            }
+        }
+    }
+    $("btn").onclick=function(){
+        brushColr();
+    }
+</script>
