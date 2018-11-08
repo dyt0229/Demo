@@ -5,10 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>easyChatBox</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin:0;
+        }
+        #box{
+            width:500px;
+            height: 300px;
+            border:1px solid gray;
+        }
+    </style>
 </head>
 <body>
     <div id="box"></div>
     <input id="sayer" value="" type="text"/>说：
     <input id="txt" type="text"/>
+    <input type="button" id="btn" value="发送"/>
+    <input type="radio" name="speedKey" checked/>ctrl+enter
+    <input type="radio" name="speedKey"/>enter
 </body>
 </html>
+<script type="text/javascript">
+function $(id){
+    return document.getElementById(id);
+}
+    function sayInfo(){
+        var sayer=$("sayer").value;
+        var txtContent = $("txt").value;
+        
+        $("box").innerHTML+=sayer+"说："+txtContent+"<br/>";
+        $("txt").value="";
+       
+    }
+    window.onload=function(){
+        $("btn").onclick=sayInfo;
+
+        $("txt").onkeydown=function(event){
+            var evt=event || window.event;
+            var speedKey=document.getElementsByName("speedKey");
+            if(speedKey[0].checked==true){
+                if(evt.shiftKey==false&&evt.altKey==false&&evt.ctrlKey==true&&evt.keyCode==13){
+                    sayInfo();
+                }
+            }else{
+                if(evt.shiftKey == false && evt.altKey == false && evt.ctrlKey ==false&&evt.keyCode==13){
+                    sayInfo();
+                }
+            }
+        }
+    }
+</script>
