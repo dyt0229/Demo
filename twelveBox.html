@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nineBox</title>
+    <style type="text/css">
+        body,html{
+            margin:0;
+            padding: 0;
+        }
+        #box{
+            list-style: none;
+            width:360px;
+            height: 600px;
+            position: relative;
+            box-sizing: border-box;
+            margin:0 auto;
+        }
+        li{
+            position: absolute;
+            width:120px;
+            height: 150px;
+            border:1px solid white;
+            background-image:url(imgs/cc.jpg);
+            background-size: 360px 600px;
+        }
+        #box li:nth-child(1){
+            left:0px;
+            top:0px;
+            background-position: 0px 0px;
+        }
+        #box li:nth-child(2){
+            left:120px;
+            top:0px;
+            background-position: -120px 0px;
+        }
+        #box li:nth-child(3){
+            left:240px;
+            top:0px;
+            background-position: -240px 0px;
+        }
+        #box li:nth-child(4){
+            left:0px;
+            top:150px;
+            background-position: 0px -150px;
+        }
+        #box li:nth-child(5){
+            left:120px;
+            top:150px;
+            background-position: -120px -150px;
+        }
+        #box li:nth-child(6){
+            left:240px;
+            top:150px;
+            background-position: -240px -150px;
+        }
+        #box li:nth-child(7){
+            left:0px;
+            top:300px;
+            background-position: 0px -300px;
+        }
+        #box li:nth-child(8){
+            left:120px;
+            top:300px;
+            background-position: -120px -300px;
+        }
+        #box li:nth-child(9){
+            left:240px;
+            top:300px;
+            background-position: -240px -300px;
+        }
+        #box li:nth-child(10){
+            left:0px;
+            top:450px;
+            background-position: 0px -450px;
+        }
+        #box li:nth-child(11){
+            left:120px;
+            top:450px;
+            background-position: -120px -450px;
+        }
+        #box li:nth-child(12){
+            left:240px;
+            top:450px;
+            background-position: -240px -450px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="box">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/eventTools.js"></script>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    window.onload = function () {
+            drag();
+        }
+    //让所有li可以在ul里拖拽
+    function drag(){
+        var index=-1;
+        var targetIndex=-1;
+        var lis=document.getElementsByTagName("li");
+        for(var i=0;i<lis.length;i++){
+
+            lis[i].setAttribute("index",i); //给每个li添加一个自定义属性ind,指的是它的下标
+
+            lis[i].onmousedown=function(event){
+                var evt =event || window.event;
+                var offsetX=evt.offsetX; //鼠标距离当前元素（事件源）左上角的坐标距离
+                var offsetY=evt.offsetY;
+                this.style.zIndex=1;
+
+                index=this.getAttribute("index");
+
+                this.parentNode.onmousemove=function(event){
+                    var evt=event || window.event;
+                    
+                    //获取鼠标距离ul的距离
+                    var mouseX=evt.pageX-this.offsetLeft;
+                    var mouseY=evt.pageY-this.offsetTop;
+
+                    //计算li的坐标
+                    var left1=mouseX-offsetX;
+                    var top1=mouseY-offsetY;
+
+                    if(left1<0 || left1>240){
+                        return;
+                    }
+                    if(top1<0 || top1>450){
+                        return;
+                    }
+
+                    targetIndex= getTargetIndex(mouseX,mouseY); 
+                    // console.info(targetIndex);
+
+                    lis[index].style.left=left1+"px";
+                    lis[index].style.top=top1+"px";
+                }
+            }
+        }
+    
+    document.body.onmouseup=function(event){
+        var evt = event || window.event;
+        if(evt.target.tagName.toLowerCase()!="li"){
+            targetIndex=-1;
+        }
+        $("box").onmousemove="";
+
+        (index>-1)&&(lis[index].style.zIndex=0);
+        exchange(index,targetIndex);
+
+        index=-1;
+        targetIndex=-1;
+    }
+}
+    //获取目标li的下标
+    //参数：鼠标距离ul的距离x和y
+    function getTargetIndex(x,y){
+        return parseInt(y/150)*3+parseInt(x/120);
+    }
+
+    //交换
+    function exchange(sourceIndex,targetIndex){
+        var lis=document.getElementsByTagName("li");
+        //保证源li的下标是合法的
+        if(sourceIndex<0 || sourceIndex>lis.length-1){
+            return;
+        }
+
+        //1、互换background-position
+        if(sourceIndex!=targetIndex&&(sourceIndex>-1&&sourceIndex<lis.length)){
+            var temp= getStyle(lis[sourceIndex],"backgroundPosition"); 
+            lis[sourceIndex].style.backgroundPosition= getStyle(lis[targetIndex],"backgroundPosition");
+            lis[targetIndex].style.backgroundPosition=temp;
+        }
+
+        //把源li归位
+        //li的序号
+        //行序号=parseInt(序号/列数) ----即parseInt(序号/3);
+        //列序号=parseInt(序号%列数) ----即parseInt(序号%3)；
+        var row=parseInt(sourceIndex/3);
+        var col=sourceIndex%3;
+        lis[sourceIndex].style.left=col*120+"px";
+        lis[sourceIndex].style.top=row*150+"px";
+    }
+
+    
+</script>
