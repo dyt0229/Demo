@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>urlKeyValue</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var url="http://item.taobao.com/item.html?a=1&b=2&c=&d=xxx&e";
+    /*
+    var index=str.indexOf("?");
+    console.info(index);
+    var newStr=str.substring(index+1);
+    console.info(newStr);
+    var arr=newStr.split("&");
+    console.info(arr);
+    */
+   function urlPath(url) {
+       var str=url.split("?")[1]; //a = 1 & b=2 & c=& d=xxx & e
+       var jsonObj={};
+       if(str){
+           var arr=str.split("&"); //[a = 1,b=2, c=, d=xxx,e]
+           for(var i in arr){
+            //    [key,value]=arr[i].split("=");
+            var arr1 = [];
+            arr1 = arr[i].split("=");
+               jsonObj[arr1[0]]=arr1[1];
+           }
+       }
+       return jsonObj;
+   }
+   console.info(urlPath(url));
+
+    /*
+   function urlPath2(url){
+       var index=url.indexOf("?");
+       var str=url.substring(index+1);
+       var arr=[];
+       var newStr="";
+       var jsonObj;
+       if(str){
+           arr=str.split("&");
+           for(var i in arr){
+               var key=arr[i].split("=")[0];
+               var value=arr[i].split("=")[1];
+            //    newStr+=key+":"+"'"+value+"'"+",";
+           }
+        //    console.info(newStr);
+           var newVal=newStr.substring(0, newStr.length-1);
+        //    console.info(newVal);
+        //    console.info(typeof newVal);
+        //    var jsonObj1 = '{1:"11"}';
+           jsonObj=JSON.parse(newVal);
+       }
+       return jsonObj;
+
+   }
+    console.info(urlPath2(url));
+    */
+
+    
+    
+
+</script> 

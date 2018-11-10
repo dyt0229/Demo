@@ -12,10 +12,10 @@
 </html>
 <script>
     function getStyle(obj,attr) {
-        if(obj.currentStyle){
+        if(obj.currentStyle){ //其他
             return obj.currentStyle[attr];
         }else{
-            return window.getComputedStyle(obj,null)[attr];
+            return window.getComputedStyle(obj,null)[attr];  //IE
         }
     }
 </script>
