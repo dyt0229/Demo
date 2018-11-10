@@ -103,8 +103,10 @@
         <li></li>
         <li></li>
     </ul>
+    <input type="button" id="btnSave" value="保存当前位置"/>
 </body>
 </html>
+<script type="text/javascript" src="js/cookieTools.js"></script>
 <script type="text/javascript" src="js/cssTools.js"></script>
 <script type="text/javascript" src="js/eventTools.js"></script>
 <script>
@@ -112,7 +114,37 @@
         return document.getElementById(id);
     }
     window.onload = function () {
+        //读取位置
+            readData();
             drag();
+            //点击按钮保存数据
+            $("btnSave").onclick=function(){
+                saveData();
+            }
+        }
+        //读取位置
+        function readData() {
+            var str=getCookie("twelvePos");
+            if(str==null){
+                return;
+            }
+            //通过循环保存的位置，赋给每个li
+            var arr=JSON.parse(str);
+            var lis=$("box").children;
+            for(var i in arr){
+                lis[i].style.backgroundPosition=arr[i];
+            }
+        }
+        function saveData(){
+            //收集数据
+            var lis=$("box").children;
+            var arr=[];
+            for(var i=0;i<lis.length;i++){
+                var pos=getStyle(lis[i],"backgroundPosition");
+                arr.push(pos);
+            }
+            //保存数据
+            addCookie("twelvePos",JSON.stringify(arr),7);
         }
     //让所有li可以在ul里拖拽
     function drag(){
