@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>replaceNode</title>
+</head>
+<body>
+    <div id="box">
+        <p>我的第一个p</p>
+        <p>我的第二个p，一会会变成图片</p>
+        <p>我的第三个p</p>
+    </div>
+    <input type="button" id="btnReplace" value="点击将文字替换为图片"/>
+</body>
+</html>
+<script type="text/javascript">
+    function $(id) {
+        return document.getElementById(id);
+      }
+    function changeImg(){
+        var imgDom=document.createElement("img");
+        imgDom.src="imgs/tt.jpg";
+        imgDom.style.width="200px";
+        imgDom.style.height="270px";
+        $("box").replaceChild(imgDom,$("box").children[1]);
+    }
+    $("btnReplace").onclick=function(){
+        changeImg();
+    }
+</script>
