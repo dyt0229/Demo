@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>move</title>
+    <style type="text/css">
+    html,body{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        left: 100px;
+        top: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/move.js"></script>
+<script type="text/javascript">
+    window.onload=function(){
+        // linearMove1($("#box"),"left",100,500,5,10);
+        // linearMove1($("#box"), "top", 100, 500, 5, 10);
+        // linearMove2($("#box"), "left", 100, 500, 1000);
+        // linearMove2($("#box"), "top", 100, 500, 1000);
+        // linearMove2($("#box"), "width", 100, 200, 1000);
+        // linearMove2($("#box"), "height", 100, 200, 1000);
+        // linearMove3($("#box"), "left", 100, 500, 2000);
+        // accelerateMove($("#box"),"left",100,500,200,20);
+        go();
+    }
+            var domObj=$("#box");
+            var startValue=100;
+            var endValue=500;
+            var startTimeSpace=200;
+            var endTimeSpace=20;
+            let step = 10;
+            let currValue = startValue;
+            var currTimeSpace = startTimeSpace;
+            //变多少次
+            let count = (endValue - startValue) / step;
+            let timeSpaceInc = (startTimeSpace - endTimeSpace) / count;
+            var myTimer = null;
+            function goStep() {
+                //改变数据
+                currTimeSpace= currTimeSpace- timeSpaceInc;
+                currValue += step;
+
+                var isExit = false;
+                //处理边界
+                if (currValue >= endValue) {
+                    currValue = endValue;
+                    window.clearTimeout(myTimer);
+                    isExit = true;
+                }
+                //改变外观
+                domObj.style.left = currValue + "px";
+                if (isExit) {
+                    return;
+                }
+               setTimeout(goStep, currTimeSpace);
+            }
+        function go(){
+            myTimer= setTimeout(goStep, currTimeSpace);
+        }
+    
+</script>

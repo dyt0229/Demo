@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>accelerateMove</title>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    
+        #box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            left: 100px;
+            top: 100px;
+        }
+        #box1 {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            left: 120px;
+            top: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box1"></div>
+    <button id="btn">走</button>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/move.js"></script>
+<script type="text/javascript">
+    let domObj=$("#box");
+    let step=5;
+    let startValue=100;
+    let endValue=500;
+    let currValue=startValue;
+    var myTimer=setInterval(function(){
+        step+=5;
+        currValue+=step;
+        if(currValue>=endValue){
+            currValue=endValue;
+            window.clearInterval(myTimer);
+        }
+        domObj.style.left=currValue+"px";
+    },100);
+    // $("#btn").onclick=function(){
+    accelerateMove($("#box1"),"top",120,500,50,-5,100);
+    // }
+</script>
