@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>addNode</title>
+</head>
+<body>
+    <div id="box">
+        <p>我是第一个p</p>
+        <p id="pId">我是第二个p</p>
+        <p>我是第三个p</p>
+    </div>
+    <input type="button" value="点我增加" id="btn"/>
+</body>
+</html>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    function addthings(){
+        var imgDom=document.createElement("img");
+        imgDom.src="imgs/tt.jpg";
+        imgDom.style.width="200px";
+        imgDom.style.height="280px";
+        $("pId").appendChild(imgDom);
+
+        var spanDom=document.createElement("span");
+        var txtDom=document.createTextNode("我是新增的span里的文字内容");
+        spanDom.appendChild(txtDom);
+        $("pId").insertBefore(spanDom,imgDom);
+    }
+$("btn").onclick=function(){
+    addthings();
+}
+</script>
