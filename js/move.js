@@ -53,7 +53,7 @@ function linearMove3(domObj,attr,startValue,endValue,timeLong){
     //假定时间间隔
     let timeSpace=10;
     //计算步长
-    let step=(endValue-startValue)/(timeLong/timeSpace);
+    let step=Math.abs(endValue-startValue)/(timeLong/timeSpace);
     //给当前值赋值
     let currValue=startValue;
     //方向
@@ -72,8 +72,7 @@ function linearMove3(domObj,attr,startValue,endValue,timeLong){
         }else{
             domObj.style[attr]=currValue+"px";
         }
-    },timeSpace);
-    
+    },timeSpace);  
 }
 
 //封装匀速运动（正反向都有）
@@ -428,7 +427,7 @@ function animate(domObj,attrObj,timeLong,func){
 //参数
 //DOM元素
 //时长
-function fadeIn(domOj,timeLong){
+function fadeIn(domObj,timeLong){
     linearMove3(domObj,"opacity",0,1,timeLong);
 }
 
