@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+       body,html,ul,li{
+           margin: 0;
+           padding: 0;
+       }
+       #box{
+           width: 600px;
+           height: 400px;
+           border:1px solid black;
+           margin:10px auto;
+           position: relative;
+       }
+       img{
+           width: 600px;
+           height: 400px;
+           position: absolute;
+       }
+       #box img:nth-child(1){
+           z-index: 1;
+       }
+       ul{
+           position: absolute;
+           right:20px;
+           bottom: 10px;
+           z-index: 2;
+           list-style: none;
+       }
+       ul li{
+           width:20px;
+           height: 20px;
+           border-radius: 50%;
+           background-color:gray;
+           margin-left: 20px;
+           float: left;
+       }
+       ul li:nth-child(1){
+           background-color: orange;
+       }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img src="imgs/lb1.jpg" alt=""/>
+        <img src="imgs/lb2.jpg" alt=""/>
+        <img src="imgs/lb3.jpg" alt=""/>
+        <img src="imgs/lb4.jpg" alt=""/>
+        <img src="imgs/lb5.jpg" alt=""/>
+        <img src="imgs/lb6.jpg" alt=""/>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript">
+    let currIndex=0;
+    let myTimer=null;
+    function autoPlay(){
+        if(myTimer!=null){
+            return;
+        }
+        myTimer=setInterval(function(){
+            //改变数据
+            currIndex++;
+            showImg();
+        },1000)
+    }
+    function showImg(){
+        //边界处理
+        if (currIndex < 0 || currIndex > 5) {
+            currIndex = 0;
+        }
+        //改变外观
+        //改变图片的外观
+        let imgsDom = $("#box").children;
+        for (let i = 0; i < imgsDom.length-1; i++) {
+            imgsDom[i].style.zIndex = 0;
+        }
+        imgsDom[currIndex].style.zIndex = 1;
+        //改变豆豆的颜色
+        let lisDom = $("#box").lastElementChild.children;
+        for (let i = 0; i < lisDom.length; i++) {
+            lisDom[i].style.backgroundColor = "gray";
+        }
+        lisDom[currIndex].style.backgroundColor = "orange";
+    }
+    function goImg(transIndex){
+        //改变数据
+        currIndex=transIndex;
+        showImg();
+    }
+    function stop(){
+        if(myTimer!=null){
+            window.clearInterval(myTimer);
+            myTimer=null;
+        }
+    }
+    window.onload=function(){
+        autoPlay();
+        $("#box").onmouseover=stop;
+        $("#box").onmouseout=autoPlay;
+        let lisDom=$("#box").lastElementChild.children;
+        for(let i=0;i<lisDom.length;i++){
+            lisDom[i].onclick=function(){
+                goImg(i);
+            }
+        }
+    }
+
+</script>
