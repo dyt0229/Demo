@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>seamLessRolling</title>
+<style type="text/css">
+html,body{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width:900px;
+    height: 200px;
+    border: 1px solid black;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+}
+#allImg{
+    width: 2700px;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+img{
+    width: 300px;
+    height: 200px;
+    float: left;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="allImg">
+        <img src="imgs/lb1.jpg" alt="">
+        <img src="imgs/lb2.jpg" alt="">
+        <img src="imgs/lb3.jpg" alt="">
+        <img src="imgs/lb4.jpg" alt="">
+        <img src="imgs/lb5.jpg" alt="">
+        <img src="imgs/lb6.jpg" alt="">
+        <img src="imgs/lb1.jpg" alt="">
+        <img src="imgs/lb2.jpg" alt="">
+        <img src="imgs/lb3.jpg" alt="">
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript">
+    var myTimer=null;
+    let left1=0;
+    function autoRoll(){
+        
+      if(myTimer!=null){
+          return;
+      }
+      myTimer=setInterval(function(){
+        left1--;
+        if(left1<=-1800){
+            left1=0;
+        }
+        $("#allImg").style.left=left1+"px";
+       },20);
+    }
+    function stop(){
+        if(myTimer!=null){
+            window.clearInterval(myTimer);
+            myTimer=null;
+        }
+    }
+    window.onload=function(){
+        autoRoll();
+        $("#box").onmouseover=stop; 
+        $("#box").onmouseout=autoRoll;
+    }
+</script>
