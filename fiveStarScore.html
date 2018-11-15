@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fiveStarScore</title>
+    <style type="text/css">
+    html,body,ul,li{
+        margin:0;
+        padding:0;
+    }
+    ul{
+        list-style: none;
+        width:200px;
+        height: 27px;
+        margin-top:20px;
+        float: left;
+        margin-left: 200px;
+    }
+    li{
+        width: 27px;
+        height: 27px;
+        background:url(imgs/star.gif) no-repeat 0 0;
+        margin-right: 5px;
+        float: left;
+    }
+    span{
+        display: block;
+        height: 27px;
+        line-height: 27px;
+        margin-top: 20px;
+        float: left;
+    }
+    </style>
+</head>
+<body>
+    <ul id="box">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <span id="scoreSpan">0</span>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript">
+    function changeStar(sep) {
+        let lis=$("#box").children;
+        for(let j=0;j<sep;j++){
+            lis[j].style.backgroundPosition="0px -27px";
+        }
+        for(let j=sep;j<lis.length;j++){
+            lis[j].style.backgroundPosition="0px 0px";
+        }
+    }
+    window.onload=function(){
+        let score=0;
+        let lis=$("#box").children;
+        for(let i=0;i<lis.length;i++){
+            lis[i].onmouseover=function(){
+                let sep=score>i+1?score:i+1;
+                changeStar(sep);
+            }
+            lis[i].onmouseout=function(){
+                changeStar(score);
+            }
+            lis[i].onclick=function(){
+                score=i+1;
+                $("#scoreSpan").innerHTML=score;
+                changeStar(score);
+            }
+        }
+    }
+</script>
