@@ -31,6 +31,7 @@ body{
     <!-- <div id="box"></div> -->
 </body>
 </html>
+<script type="text/javascript" src="js/cssTools.js"></script>
 <script>
     function randomColor() {
         var str="";
@@ -53,6 +54,7 @@ body{
     }
     
     document.getElementById("btn").onclick=function(){
-        randomColor();
+        // randomColor();
+        document.getElementsByTagName("body")[0].style.background=getColor();
     }
 </script>

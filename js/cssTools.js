@@ -24,3 +24,14 @@ function $(str){
         return document.getElementsByTagName(str);
     }
 }
+
+//获取随机颜色
+//参数：无
+//返回值：随机颜色
+function getColor(){
+    let str="#";
+    for(let i=0;i<6;i++){
+        str+=parseInt(Math.random()*16).toString(16);
+    }
+    return str;
+}
