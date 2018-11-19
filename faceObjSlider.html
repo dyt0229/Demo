@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>faceObjSlider</title>
+    <style type="text/css">
+    #box{
+        width:600px;
+        height: 400px;
+        margin:0 auto;
+    }
+    #box2{
+        width: 300px;
+        height: 200px;
+        margin:10px auto;
+    }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/move.js"></script>
+<script type="text/javascript" src="js/sliderTools.js"></script>
+<script type="text/javascript">
+    
+    window.onload=function(){
+        let s1=new Slider(
+            $("#box"),
+            600,
+            400,
+            ["imgs/lb1.jpg","imgs/lb2.jpg", "imgs/lb3.jpg", "imgs/lb4.jpg", "imgs/lb5.jpg", "imgs/lb6.jpg"],
+            "pink",
+            "red",
+            20,
+            true,
+            2000
+        );
+        s1.autoPlay();
+        let s2=new Slider(
+            $("#box2"),
+            300,
+            200,
+            ["imgs/lb6.jpg","imgs/lb7.jpg", "imgs/lb8.jpg", "imgs/lb9.jpg", "imgs/lb10.jpg"],
+            "gray",
+            "orange",
+            15,
+            false,
+            1500
+        );
+        s2.autoPlay();
+    }
+</script>
