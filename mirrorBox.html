@@ -5,87 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>mirrorBox</title>
+    <style type="text/css">
+    *{
+        margin:0;
+        padding: 0;
+    }
+    /* #box{
+        width:300px;
+        height: 200px;
+    } */
+    /* #box2{
+
+    } */
+    </style>
 </head>
 <body>
-    
+    <div id="box"></div>
+    <div id="box2"></div>
 </body>
 </html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/BigMirror.js"></script>
 <script type="text/javascript">
-    function MirrorBox(bigBox,width,height,img,mirrorBoxWidth,mirrorBoxHeight,mirrorBoxColor,n){
-        this.bigBox=bigBox;
-        this.width=width;
-        this.height=height;
-        this.img=img;
-        this.mirrorBoxWidth=mirrorBoxWidth;
-        this.mirrorBoxHeight=mirrorBoxHeight;
-        this.mirrorBoxColor=mirrorBoxColor;
-        this.n=n;
-        
-        this.showBox=null;
-
-        this.initUI=function(){
-            this.bigBox.style.width=this.width+"px";
-            this.bigBox.style.height=this.height+"px";
-            this.bigBox.style.position="relative";
-            let imgDom=document.createElement("img");
-            imgDom.src=this.img;
-            imgDom.style.cssText="position:absoulte;";
-            imgDom.style.width=this.width+"px";
-            imgDom.style.height=this.height+"px";
-            this.bigBox.appendChid(imgDom);
-
-            //创建镜子
-            let mirrorBox=document.createElement("div");
-            mirrorBox.style.cssText="positon:absolute;opacity:.3;"
-            mirrorBox.style.width=this.mirrorBoxWidth+"px";
-            mirrorBox.style.height=this.mirrorBoxHeight+"px";
-            mirrorBox.style.display="block";
-            this.bigBox.appendChid(mirrorBox);
-
-            //创建显示盒
-            let showBox=document.createElement("div");
-            showBox.style.cssText="position:absoulte;top:0;";
-            showBox.style.width=parseFloat(getStyle(this.mirrorBox,"width"))*n+"px";
-            showBox.style.height = parseFloat(getStyle(this.mirrorBox, "height")) * n + "px";
-            showBox.style.left=this.bigBox.offsetWidth+"px";
-            showBox.style.backgroundImg=this.img;
-            showBox.style.backgroundSize=this.width*n+"px" +this.height*n+"px";
-            showBox.style.display="blcok";
-
-
-            this.bigBox.onmousemove = function (event) {
-                let evt = event || window.event;
-                let left1 = evt.pageX - this.offsetLeft - that.mirrorBox.width / 2;
-                let top1 = evt.pageY - this.offsetTop - that.mirrorBox.height / 2;
-                if(left<0){
-                    left1=0;
-                }
-                if(left1>this.width-mirrorBoxWidth){
-                    left1=this.width-mirrorBoxWidth;
-                }
-                if(top1<0){
-                    top1=0;
-                }
-                if(top1>this.height-mirrorBoxHeight){
-                    topq=this.height-mirrorBoxHeight;
-                }
-                mirrorBox.style.left = left1 + "px";
-                mirrorBox.style.top = top1 + "px";
-                
-                showBox.style.backgroundPosition=(-n*left1)+"px "+(-n*top1)+"px";
-
-            }
-            
-            this.bigBox.appendChid(showBox);
-        };
-
-        this.addEvent=function(){
-            let that=this;
-            
-        };
-        this.go=function(){
-            let boxes=this.bigBox.chilren;
-            boxes[2].style.width=
-        }
+    
+    window.onload=function(){
+        let m1=new MirrorBox($("#box"),400,280,"imgs/lb1.jpg",100,80,"pink",2);
+        let m2=new MirrorBox($("#box2"),500,350,"imgs/lb2.jpg",100,80,"pink",3);
     }
 </script>
