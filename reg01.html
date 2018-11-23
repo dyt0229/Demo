@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reg01</title>
+</head>
+<body>
+    <h1>欢迎您的注册:</h1>
+        用户账号：<input type="text" id="username" name="username" />
+        <span id="userSpan">0</span><br />
+        用户性别：<input type="radio" name="usersex" value="男" />男<input type="radio" name="usersex" value="女" />女</br />
+        用户密码：<input type="password" id="userpass" name="userpass"/><br />
+        确认密码：<input type="password" /><br />
+        <div id="messageBox" style="color:red;display:none"></div>
+        <input type="button" value="点击注册" id="btn"/>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/cookieTools.js"></script>
+<script type="text/javascript">
+  
+        
+    
+    
+
+    window.onload=function(){
+        
+        $("#username").onblur=function(){
+            let xhr=new XMLHttpRequest();
+            xhr.open("get","reg01.php?username="+this.value,true);
+
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4 &&xhr.status==200){
+                    if(xhr.responseText=="0"){
+                        $("#userSpan").style.color="green";
+                        $("#userSpan").innerHTML="该用户名可以使用";
+                    }else{
+                        $("#userSpan").style.color="red";
+                        $("#userSpan").innerHTML="该用户名已被占用";
+                    }
+                }
+            }
+            xhr.send();
+        }
+        let ints = "";
+        let inputs = document.getElementsByName("usersex");
+        for (let i in inputs) {
+            
+            inputs[i].onclick = function () {
+                if (inputs[i].checked) {
+                    ints = ints + inputs[i].value;
+                    console.log(ints);
+                }
+            }
+
+        }
+        
+        $("#btn").onclick=function(){
+            let xhr=new XMLHttpRequest();
+
+            xhr.open("post","reg0101.php",true);
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4 && xhr.status==200){
+                    let str=xhr.responseText;
+                    if(str=="1"){
+                        alert("恭喜您注册成功！请前往登录！");
+                        location.href="login01.html";
+                    
+                    }else if(str="-1"){
+                        $("#messageBox").style.display="block";
+                        $("#messageBox").innerHTML="注册失败，用户名已存在，请重新注册";
+                    }else{
+                        $("#messageBox").style.display = "block";
+                        $("#messageBox").innerHTML = "注册失败，服务器出错";
+                    }
+                }
+            }
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            
+                let sendStr="username="+$("#username").value+"&usersex="+ints+"&userpass="+$("#userpass").value;
+                console.info(sendStr);
+                xhr.send(sendStr);
+        }
+    }
+</script>           

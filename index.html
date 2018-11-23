@@ -8,5 +8,24 @@
 </head>
 <body>
     <h1>我就是首页！哈哈哈哈哈哈哈，敷不敷衍？惊不惊喜？意不意外？</h1>
+    <div id="welcomeBox">
+        欢迎您：<span id="usernameSpan"></span>
+    </div>
 </body>
 </html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/cookieTools.js"></script>
+<script type="text/javascript">
+    function initUI(username){
+        if(username!=null){
+            $("#usernameSpan").innerHTML=username;
+            $("welcomeBox").display="block";
+        }else{
+            $("#welcomeBox").display="none";
+        }
+    }
+    window.onload=function(){
+        let username=getCookie("username");
+        initUI(username);
+    }
+</script>

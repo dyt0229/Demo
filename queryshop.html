@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>queryshop</title>
+</head>
+<body>
+    <input type="text" id="queryContent"/>
+    <input type="button" id="btn" value="搜索"/>
+    <div id="showbox"></div>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+    window.onload=function(){
+        $("#btn").onclick=function(){
+            let queryObj={
+                "url":"queryshop.php",
+                "param":"txt="+$("#queryContent").value,
+                "func":showData
+            };
+            ajax03(queryObj);
+        }
+        function showData(objStr){
+            let objs=JSON.parse(objStr);
+            for(let i in objs){
+                let pDom=$create("p");
+                pDom.innerHTML="店铺编号："+objs[i].shopid;
+                $("#showbox").appendChild(pDom);
+                let pDomName=$create("span");
+                pDomName.innerHTML="店铺名字："+objs[i].shopname;
+                $("#showbox").appendChild(pDomName);
+                let pDomadd = $create("span");
+                pDomadd.innerHTML = "店铺地址：" + objs[i].shopaddress;
+                $("#showbox").appendChild(pDomadd);
+                let pDomphone = $create("span");
+                pDomphone.innerHTML = "店铺电话：" + objs[i].shopphone;
+                $("#showbox").appendChild(pDomphone);
+            }
+        }
+    }
+</script>

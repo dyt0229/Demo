@@ -35,3 +35,10 @@ function getColor(){
     }
     return str;
 }
+
+//动态创建标签
+//参数：要创建的标签名
+//返回值：创建的对象
+function $create(tagname) {
+    return document.createElement(tagname);
+}
