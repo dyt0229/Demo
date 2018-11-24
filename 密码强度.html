@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="txt"/>
+		<span id="word"style="display: inline-block;width: 30px;height:20px;background: red;font-size: 12px;">简单</span>
+		<span id="word2"style="display: inline-block;width: 30px;height:20px;background: red;font-size: 12px;">一般</span>
+		<span id="word3"style="display: inline-block;width: 30px;height:20px;background: red;font-size: 12px;">强</span>
+		<span id="word4"></span>
+	</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js " ></script>
+<script type="text/javascript">
+	var word=$("#word")
+	var word2=$("#word2")
+	var word3=$("#word3")
+	var word4=$("#word4")
+	var txt=$("#txt");
+	var count = 0;
+	txt.onkeyup=function(){
+		var texts=txt.value;	
+		var jian=/\d/g;
+		var ban=/[a-zA-Z]/g;
+		var qiang=/([!@#$%^&*])/g;
+		
+		var aa=false;
+		if(jian.test(texts)==true){
+			aa=true;
+		}
+		var bb=false;
+		if(ban.test(texts)==true){
+			bb=true;
+		}
+		var cc=false;
+		if(qiang.test(texts)==true){
+			cc=true;
+		}
+		count=aa+bb+cc;
+		console.info(count);
+		if(count==1){
+			word.style.backgroundColor='green';
+		}else{
+			word.style.backgroundColor='red';
+		}
+		if(count==2){
+			word2.style.backgroundColor='green';
+		}else{
+			word2.style.backgroundColor='red';
+		}
+		 if(count==3){
+			word3.style.backgroundColor='green';
+		}else{
+			word3.style.backgroundColor='red';
+		}
+		if(texts.length<6||texts.length>16){
+			word4.innerHTML="请输入6-16位密码";
+			word.style.backgroundColor='red';
+			word2.style.backgroundColor='red';
+			word3.style.backgroundColor='red';
+		}else{
+			word4.innerHTML="√";	
+		}
+	}
+	
+	
+
+	
+</script>
+
+
+

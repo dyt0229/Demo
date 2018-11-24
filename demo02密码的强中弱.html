@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0; padding:0}
+span{
+	background-color:#ccc;
+}
+</style>
+
+</head>
+
+<body>
+	密码:<input id="passId" type="text" />
+	<span id="weak">&nbsp;&nbsp;弱&nbsp;&nbsp;</span>
+	<span id="normal">&nbsp;&nbsp;中&nbsp;&nbsp;</span>
+	<span id="strong">&nbsp;&nbsp;强&nbsp;&nbsp;</span>
+	<span id="passSpan"></span>
+</body>
+</html>
+<script>
+function $(id){
+	return document.getElementById(id);
+}
+
+window.onload=function(){
+	$("passId").onkeyup = function(){
+		$("passSpan").innerHTML = "√";
+		//长度，6-16；
+		//弱：纯数字，纯字母，纯特殊字符
+		//中：两个的组合
+		//强：三个组合
+		var pass = this.value;
+		if(pass.length>=6 && pass.length<=16){
+			//1、分别查看字符串里是否有，数字，字母，特殊字符
+			//1）、数字
+			var hasNum = false;
+			var regNum = /\d/;
+			if(regNum.test(pass)){
+				hasNum = true;
+			}
+			//2）、字母
+			var hasLetter = false;
+			var regLetter = /[a-zA-Z]/;
+			if(regLetter.test(pass)){
+				hasLetter = true;
+			}
+			//3）、特殊字符
+			var hasSpecial = false;
+			var regSpecial = /[@!#\$%]/;
+			if(regSpecial.test(pass)){
+				hasSpecial = true;
+			}
+			
+			let level = hasNum+hasLetter+hasSpecial;
+			if(level==1){//弱：纯数字，纯字母，纯特殊字
+				$("weak").style.backgroundColor = "red";
+				$("normal").style.backgroundColor = "#ccc";
+				$("strong").style.backgroundColor = "#ccc";
+			}else if(level==2){//中：两个的组合
+				$("normal").style.backgroundColor = "yellow";
+				$("weak").style.backgroundColor = "#ccc";
+				$("strong").style.backgroundColor = "#ccc";
+			}else if(level==3){//强：三个组合
+				$("strong").style.backgroundColor = "green";
+				$("weak").style.backgroundColor = "#ccc";
+				$("normal").style.backgroundColor = "#ccc";
+			}
+		}else{
+			$("passSpan").innerHTML = "×，亲，请输入6-16位的密码";
+		}
+	}
+}
+</script>
