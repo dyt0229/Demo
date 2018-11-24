@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>provinceCity</title>
+</head>
+<body>
+    <select id="provinceSelect">
+        <option>北京</option>
+    </select>省
+    <select id="citySelect">
+        <option>北京</option>
+    </select>市
+</body>
+</html>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript">
+
+    // var city = {
+    //     "城市代码": [
+    //         {
+    //             "省": "北京",
+    //             "市": [
+    //                 {
+    //                     "市名": "北京",
+    //                     "编码": "101010100"
+    //                 },
+    //                 {
+    //                     "市名": "朝阳",
+    //                     "编码": "101010300"
+    //                 },
+    //                 {
+    //                     "市名": "顺义",
+    //                     "编码": "101010400"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "省": "天津市",
+    //             "市": [
+    //                 {
+    //                     "市名": "天津",
+    //                     "编码": "101030100"
+    //                 },
+    //                 {
+    //                     "市名": "宝坻",
+    //                     "编码": "101030300"
+    //                 }
+    //             ]
+    //         }
+    //     ]
+    // }
+    // let citys;
+    function getData(){
+        ajax03({
+            "url":"json/city.json",
+            "func":showData
+        });
+    }
+    function showData(objStr){
+        // console.info(citys);
+        citys=JSON.parse(objStr);
+        // console.info(citys);
+        showProvince(citys);
+        showCity($("#provinceSelect").value);
+    }
+    function showProvince(citys){
+        var arr=citys["城市代码"];
+        // console.info(arr);
+        let htmlStr="";
+        for(let i in arr){
+            htmlStr=htmlStr+'<option value='+arr[i]["省"]+'>'+arr[i]["省"]+'</option>';
+        }
+        $("#provinceSelect").innerHTML=htmlStr;
+    }
+    function showCity(provinceName){
+        var arr=citys["城市代码"];
+        for(let i in arr){
+            if(arr[i]["省"]==provinceName){
+                var provinceObj=arr[i];
+            }
+        }
+        let cityArr=provinceObj["市"];
+
+        let htmlStr="";
+        for(let i in cityArr){
+            htmlStr=htmlStr+'<option value='+cityArr[i]["市名"]+'>'+cityArr[i]["市名"]+'</option>';
+        }
+        $("#citySelect").innerHTML=htmlStr;
+    }
+       
+    window.onload=function(){
+        getData();
+        // showData();
+        $("#provinceSelect").onchange=function(){
+            showCity(this.value);
+        }
+    }
+</script>

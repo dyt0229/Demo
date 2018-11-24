@@ -24,7 +24,9 @@ function ajax01(mehod,url,param,isAsync,func){
         xhr.send(param);
     }
     xhr.send();
+       
 }
+  
 
 //封装ajax
 //参数：对象
