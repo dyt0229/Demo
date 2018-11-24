@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<div id="box" style="width:200px;height:300px;border:1px solid skyblue;margin-bottom: 10px;" ></div>
+	<input id="small" type="text">
+	<button id="btn" onclick="send()">发送</button>
+</body>
+</html>
+<script type="text/javascript">
+	//留言过滤。（不能重复发言不能包含敏感词）
+	var arr=[];
+	var minGan=["nnd","mmp","神经病","sb"];
+	function send(){
+		var small=document.getElementById('small').value;
+		//不能重复发言
+			if((arr.indexOf(small))>-1){
+				alert("请不要做复读机哦！");
+				return;
+			}
+			for(var i in minGan){
+				if((small.indexOf(minGan[i]))>-1){
+					alert("亲，请文明用语，否则踢你出去！！！");
+					return;
+				}
+			
+
+			arr.push(small);
+		}
+		//不能包含敏感词语
+
+		document.getElementById("box").innerHTML+=small+"<br/>";
+		document.getElementById('small').value="";
+
+	}
+</script>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	请输入密码：
+	<input type="text" id="pass" onblur="checkPass()" name="">
+	<span id="magSpan"></span>
+</body>
+</html>
+<script type="text/javascript">
+		//密码格式要求。（必须包含字母、数字、特殊字符，长度6个字符以上
+	function checkPass(){
+
+		var pass=document.getElementById('pass').value;
+		var arrEor=[];//记录错误的信息
+		if(pass.length<6){
+			arrEor.push("密码长度必须大于或者等于六位, ");
+		}
+		//字母
+		hasLetter=false;
+		for(var i=0;i<pass.length;i++){
+		var code=pass.charCodeAt(i);
+			if((code>=65&&code<=90)||(code>=97&&code<=122)){
+				hasLetter=true;
+				break;
+			}
+		}
+		if(hasLetter==false){
+			arrEor.push("密码中必须含有字母, ");
+			
+		}
+		//数字
+		var hasNum=false;
+		for(var i=0;i<pass.length;i++){
+			var code=pass.charCodeAt(i);
+			if(code>=48&&code<=57){
+				hasNum=true;
+				break;
+			}
+		}
+		if(hasNum==false){
+			arrEor.push("密码中必须含有数字, ");
+			
+		}
+		//特殊符号
+		var hasSpe=false;
+		var arr=["!","$","&","*","#","@","%"];
+		for(var i=0;i<pass.length;i++){
+			var ch=pass.charAt(i);
+			if(arr.indexOf(ch)>-1){
+				hasSpe=true;
+				break;
+			}
+		}
+		if(hasSpe==false){
+			arrEor.push("密码中必须含有特殊字符");
+			
+		}
+		//输出
+		if(arrEor.length==0){
+		document.getElementById("magSpan").innerHTML="√";
+		}
+		else{
+			document.getElementById("magSpan").innerHTML=arrEor;
+		}
+	}  
+</script>

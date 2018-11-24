@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	请输入压缩的字符串：<input type="text" id="start" value="aabccdeefff">
+	<button  onclick="compress()">点击压缩</button>
+	压缩后：<input type="text" id="end" name="">
+</body>
+</html>
+<script type="text/javascript">
+//统计字符串中每个字符的个数。（原始字符串是：“aabccdeefff”
+//,结果是：a2 b1 c2 d1 e2 f3）
+function compress(){
+	var start=document.getElementById('start').value;
+	//压缩
+	var nowChar=start.charAt(0);
+	var count=0;
+	var result="";
+	for(var i=0;i<start.length;i++){
+		if(start.charAt(i)==nowChar){
+			count++;
+		}else{
+			result+=nowChar+count;
+			nowChar=start.charAt(i);
+			count=1;
+		}
+	}
+	result+=nowChar+count;
+	document.getElementById("end").value=result;
+}
+
+ </script>

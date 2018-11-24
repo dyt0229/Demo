@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bargraph</title>
+    <style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        width: 800px;
+        height: 500px;
+        border-left:2px solid black;
+        border-bottom:2px solid black;
+        position: relative;
+        margin:20px;
+    }
+    /* #div1{
+        width: 80px;
+        height: 400px;
+        position: absolute;
+        left:100px;
+        bottom: -20px;
+    }
+    span{
+        display: block;
+        width: 80px;
+        height: 20px;
+        text-align: center;
+        white-space: nowrap;
+    }
+    p{
+        width: 80px;
+        height: 20px;
+        text-align: center;
+    }
+    #colorbar{
+        width: 80px;
+        height:360px;
+        background:red;
+    } */
+    
+    </style>
+</head>
+<body>
+    <input type="button" id="btn" value="获取销售数据"/>
+    <div id="box">
+        <!-- <div id="div1">
+            <span id="dataSpan">680万</span>
+            <div id="colorbar"></div>
+            <p id="yearp">2013</p>
+        </div> -->
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+    function getData(){
+        ajax03({
+            "url":"json/saleData.json",
+            "func":showData
+        });
+    }
+    function showData(dataStr){
+        var dataObj=JSON.parse(dataStr);
+        var dataArr=dataObj.data;
+        drawBar(dataArr);
+        
+    }
+    function getMaxMoney(data){
+        let maxMoney=data[0].money;
+        for(let i=0;i<data.length;i++){
+            if(data[i].money>maxMoney){
+                maxMoney= data[i].money;
+            }
+        }
+        return maxMoney;
+    }
+    function drawBar(data){
+        let maxWidth=800;
+        let barWidth=800/(data.length*2+1);
+        let barSpace=barWidth;
+        let maxMoney=getMaxMoney(data);
+        let maxHeight=500-20;
+        let pxPerMoney=maxHeight/maxMoney;
+        for(let i=0;i<data.length;i++){
+            //创建大盒子
+            let bigDiv=$create("div");
+            bigDiv.style.cssText="position:absolute;bottom:-20px;";
+            bigDiv.style.width=barWidth+"px";
+            bigDiv.style.left=(i+1)*barSpace+i*barWidth+"px";
+            $("#box").appendChild(bigDiv);
+            //创建span（放销售额）
+            let dataSpan=$create("span");
+            dataSpan.style.cssText="display:block;height:20px;text-align:center;white-space:nowrap;";
+            dataSpan.style.width=barWidth+"px";
+            dataSpan.innerHTML=data[i].money+"万";
+            bigDiv.appendChild(dataSpan);
+            //创建颜色柱
+            let colorBar=$create("div");
+            colorBar.style.width=barWidth+"px";
+            colorBar.style.height=data[i].money*pxPerMoney+"px";
+            colorBar.style.backgroundColor=getColor();
+            bigDiv.appendChild(colorBar);
+            //创建年份p
+            let yearp=$create("p");
+            yearp.style.cssText="height:20px;text-align:center;font-size:14px";
+            yearp.style.width=barWidth+"px";
+            yearp.innerHTML=data[i].year+"年";
+            bigDiv.appendChild(yearp);
+        }
+    }
+    window.onload=function(){
+        
+        $("#btn").onclick=function(){
+            getData();
+        }
+
+    }
+</script>
