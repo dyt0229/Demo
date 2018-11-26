@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chatAndPhp</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            background: pink;
+        }
+        .box{
+            width: 600px;
+            height: 600px;
+            margin:5px auto;
+            /* border: 1px solid black; */
+        }
+        .showBox{
+            width: 600px;
+            height: 400px;
+            background: white;
+            border-bottom: 1px solid skyblue;
+        }
+        .header{
+            height: 70px;
+            background: skyblue;
+        }
+        .header p {
+            font-size: 22px;
+            color: white;
+            line-height: 70px;
+            text-indent: 10px;
+        }
+        .header p span{
+            float: right;
+            margin-right: 10px;
+            /* border:1px solid white; */
+        }
+        #showCont{
+            /* width: 100%; */
+            height: 310px;
+            clear: both;
+            overflow: scroll;
+            padding:10px;
+            
+        }
+        .botBox{
+            width: 594px;
+            height: 194px;
+            position: relative;
+            padding: 3px;
+            background: white;
+            /* text-align: center; */
+        }
+        textarea{
+            width: 584px;
+            height: 144px;
+            position: absolute;
+            resize: none;
+            padding: 5px;
+            border: none;
+        }
+        #btn{
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            color: white;
+            right: 10px;
+            bottom: 50px;
+            background: skyblue;
+            border-radius: 4px;
+            border: none;
+        }
+        .botBox p {
+            width: 600px;
+            position: absolute;
+            bottom: 15px;
+            /* font-size: 20px; */
+            color: gray;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="showBox">
+            <div class="header">
+                <p>阿里巴巴客服<span>人工客服</span> </p>
+                
+            </div>
+            <div id="showCont"></div>
+        </div>
+        <div class="botBox">
+            <textarea id="sendCont"></textarea>
+            <input type="button" id="btn" value="发送"/>
+            <p>七鱼云客服</p>
+        </div>
+    </div>
+    发言者：<input id="sayer" type="text" value=""/>
+    
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/ajax1.js"></script>
+<script type="text/javascript">
+    
+    function sendMsg(){
+        ajax03({
+            "method":"post",
+            "url":"saveMsg.php",
+            "param":"sayer="+$("#sayer").value+"&sendCont="+$("#sendCont").value
+        });
+        $("#sendCont").value="";
+    }
+    function getMsg(){
+        setInterval(function(){
+            ajax03({
+                "url":"getMsg.php",
+                "func":showMsg
+            });
+        },1000);
+    }
+    function showMsg(str1){
+
+        let arr=JSON.parse(str1);
+
+
+        // let mep=$create("p");
+        // mep.style.cssText="float:right;background:#ac0;height:20px;padding:5px;border-radius:5px;margin-top:5px;";
+        
+        
+        // let sayer="";
+        // for(let i in arr){
+        //     sayer+=arr[arr.length-1].sayer+"说"
+        // }
+        // let cont="";
+        // for(let i in arr){
+        //     cont+=arr[arr.length-1].sendCont;
+        // }
+        // mep.innerHTML=sayer;
+        // $("#showCont").appendChild(mep);
+        // let meSpan=$create("span");
+        // meSpan.style.cssText="float:right;background:green;border:1px solid dargreen;margin-left:8px;";
+        // meSpan.innerHTML=cont;
+        // mep.appendChild(meSpan);
+
+
+        let htmlStr="";
+        for(let i in arr){
+            htmlStr+=arr[i].sayer+"说:"+arr[i].sendCont+"<br/>";
+        }
+        $("#showCont").innerHTML=htmlStr;
+    }
+    window.onload=function(){
+        $("#btn").onclick= sendMsg;
+        // $("#btn").onclick=function(){
+            getMsg();
+        // }
+    }
+</script>

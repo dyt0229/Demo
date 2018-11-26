@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>randomName2</title>
+    <style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    input{
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        margin: 50px;
+        border-radius: 10px;
+        font-size: 20px;
+        line-height: 200px;
+        outline: none;
+    }
+    #name{
+        background: pink;
+    }
+    #btn01{
+        background: skyblue;
+    }
+    #btn02{
+        background: skyblue;
+    }
+
+    </style>
+</head>
+<body>
+    <input type="text" id="name" value="" disabled/><br/>
+    <input type="button" id="btn01" value="随机点名"/>
+    <input type="button" id="btn02" value="暂停"/>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript">
+    let myTimer=null;
+    function go(){
+        myTimer=setInterval(function(){
+            var arr=["冯继恩","德华兄","马佳瑞","张楚楚","董锦锦","Aris","Fate","军儿","胡凯凯","李赛","郭倩","刘芳利","星儿","杨大哥","大奶牛"];
+            for(let i=0;i<arr.length;i++){
+                var index=parseInt(Math.random()*arr.length);
+                $("#name").value=arr[index];
+            }
+        },100)
+    }
+
+    
+        function stop() {
+            if (myTimer != null) {
+                console.info("1");
+                window.clearInterval(myTimer);
+                myTimer = null;
+            }
+        }
+  
+    window.onload=function(){
+        $("#btn01").onclick=function(){
+            go();
+        }
+        $("#btn02").onclick=function(){
+            stop();
+        }
+    }
+</script>

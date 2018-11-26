@@ -1,0 +1,29 @@
+<?php
+    header("Content-type:text/html;charset=utf-8");
+    //接收前端数据
+    //搭桥
+    $conn=mysql_connect("localhost","root","root");
+    if(!$conn){
+        die("连接失败".mysql_error());
+    }else{
+        //选择数据库
+        mysql_select_db("mydata",$conn);
+        //执行sql语句
+        $sqlstr="select sayer,cont from chat";
+        $result=mysql_query($sqlstr,$conn);
+        //关闭数据库
+        mysql_close($conn);
+        //响应
+        $str="[";
+        $row=mysql_fetch_array($result);
+        while($row){
+            $str=$str.'{"sayer":"'.$row[0].'","sendCont":"'.$row[1].'"}';
+            $row=mysql_fetch_array($result);
+            if($row){
+                $str=$str.",";
+            }
+        }
+        $str=$str."]";
+        echo $str;
+    }
+?>

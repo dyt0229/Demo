@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>loadMore</title>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+    <input type="button" value="加载更多" id="btn">
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+    function getData(pageIndex){
+        ajax03({
+            "url":"loadMore.php",
+            "param":"pageIndex="+pageIndex,
+            "func":function(str){
+                $("#box").innerHTML+=str;
+            }
+        });
+    }
+    window.onload=function(){
+        getData(1);
+        $("#btn").onclick=function(){
+            getData(2);
+        }
+    }
+</script>

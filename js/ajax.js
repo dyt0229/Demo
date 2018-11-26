@@ -37,7 +37,7 @@ function ajax02(obj){
     let xhr=new XMLHttpRequest();
     //设置请求参数
     let urlAndParam=obj.url;
-    if(obj.mehod.toLowerCase()=="get"&&obj.param!=""){
+    if(obj.method.toLowerCase()=="get"&&obj.param!=""){
         urlAndParam+="?"+obj.param;
     }
     xhr.open(obj.method,urlAndParam,obj.isAsync);
@@ -48,7 +48,7 @@ function ajax02(obj){
         }
     }
     //发送请求
-    if(obj.mehod.toLowerCase()=="post"){
+    if(obj.method.toLowerCase()=="post"){
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xhr.send(obj.param);
     }else{
@@ -85,7 +85,7 @@ function ajax03(obj){
     //发送请求
     if(defaultObj.method.toLowerCase()=="post"){
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xhr.send(defautltObj.param);
+        xhr.send(defaultObj.param);
     }else{
         xhr.send();
     }
