@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>showMusic</title>
+    <style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        position: relative;
+        margin:50px ;
+    }
+    #txt{
+        width: 296px;
+        height: 20px;
+        padding: 3px;
+    }
+    #uls{
+        list-style: none;
+        position: absolute;
+        width: 300px;
+        left:80px;
+        top:30px;
+        border:1px solid skyblue;
+        border-top:none;
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        百度搜索：<input type="text" id="txt" value=""/>
+        <ul id="uls">
+
+        </ul>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript">
+    window.onload=function(){
+        $("#txt").onkeyup=function(){
+            ajax03({
+                "url":"showMusic.php",
+                "param":"musicName="+this.value,
+                "func":showData
+            });
+        }
+    function showData(str) {
+        var arr=JSON.parse(str);
+        let ulDom=$("#uls");
+        ulDom.innerHTML="";
+        for(let i in arr){
+            let liDom=$create("li");
+            liDom.innerHTML=arr[i].musicname;
+            ulDom.appendChild(liDom);
+        }
+    }
+}
+</script>
