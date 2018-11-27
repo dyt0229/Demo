@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    a.fun(1) a.fun(2) a.fun(3)
+</body>
+</html>
+<script type="text/javascript">
+    function fun(n, o) {
+        console.log(o)  //undefined
+        return {
+            fun: function (m) {
+                return fun(m, n);
+            }
+        };
+    }
+    var a = fun(0);
+    // console.info(a);
+    // console.info(a.fun(1));
+    // console.info(a.fun(2));
+    console.info(a.fun(3));
+</script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RGYlight</title>
+    <style type="text/css">
+    *{
+        margin:0;
+        padding:0;
+    }
+    html,body{
+        background: black;
+    }
+    #box{
+        width: 250px;
+        height: 100px;
+        box-shadow: 0 0 1px 1px gray;
+        position: relative;
+        margin:50px auto;
+    }
+    #redlight{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: darkred;
+        position: absolute;
+        left:25px;
+        top:25px;
+    }
+    #greenlight{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #42643d;
+        position: absolute;
+        left:100px;
+        top:25px;
+    }
+    #yellowlight{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: orange;
+        position: absolute;
+        left:175px;
+        top:25px;
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="redlight"></div>
+        <div id="greenlight"></div>
+        <div id="yellowlight"></div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript">
+    function redlight(){
+        var p=new Promise(function(resolve,reject){
+            setTimeout(function(){
+                $("#yellowlight").style.boxShadow="0 0 0 0 white";
+                $("#yellowlight").style.backgroundColor="orange";
+                $("#redlight").style.backgroundColor="red";
+                $("#redlight").style.boxShadow = "0 0 5px 5px #f36161";
+                $("#greenlight").style.backgroundColor="#42643d";
+                resolve();
+            },1000);
+            
+        });
+        return p;
+    }
+    function greenlight() {
+            var p = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    $("#redlight").style.boxShadow = "0 0 0 0 white";
+                    $("#redlight").style.backgroundColor = "darkred";
+                    $("#greenlight").style.backgroundColor = "#00ff00";
+                    $("#greenlight").style.boxShadow = "0 0 5px 5px #abf9ab";
+                    $("#yellowlight").style.backgroundColor = "orange";
+                    resolve();
+                }, 1000);
+                
+            });
+            return p;
+        }
+        function yellowlight() {
+                var p = new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        $("#greenlight").style.boxShadow = "0 0 0 0 white";
+                        $("#greenlight").style.backgroundColor = "#42643d";
+                        $("#yellowlight").style.backgroundColor = "yellow";
+                        $("#yellowlight").style.boxShadow = "0 0 5px 5px #f1fa8b";
+                        $("#redlight").style.backgroundColor = "darkred";
+                        resolve();
+                    }, 1000);
+                    
+                });
+                return p;
+            }
+        function shine(){
+            redlight().then(greenlight).then(yellowlight).then(shine);
+        }
+        window.onload=function(){
+            shine();
+        }
+</script>

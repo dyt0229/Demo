@@ -57,6 +57,9 @@ function ajax02(obj){
 
 }
 
+//封装ajax
+//参数：对象（内含默认值）
+//返回值：
 function ajax03(obj){
     let defaultObj={
         "method":"get",
@@ -89,4 +92,45 @@ function ajax03(obj){
     }else{
         xhr.send();
     }
+}
+
+//用promise封装ajax
+//参数：对象（内含默认值）
+//返回值：
+function ajax04(obj) {
+    let defaultObj = {
+        "method": "get",
+        "url": "#",
+        "param": "",
+        "isAsync": true
+    };
+    for (let key in defaultObj) {
+        obj[key] && (defaultObj[key] = obj[key]);
+    }
+    //创建一个对象
+    let xhr = new XMLHttpRequest();
+    //设置请求参数
+    let urlAndParam = defaultObj.url;
+    if (defaultObj.method.toLowerCase() == "get" && defaultObj.param != "") {
+        urlAndParam += "?" + defaultObj.param;
+    }
+    xhr.open(defaultObj.method, urlAndParam, defaultObj.isAsync);
+    //设置回调函数
+
+    var p=new Promise(function(resolve,reject){
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                resolve && resolve(xhr.responseText);
+            }
+        }
+    });
+  
+    //发送请求
+    if (defaultObj.method.toLowerCase() == "post") {
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(defaultObj.param);
+    } else {
+        xhr.send();
+    }
+    return p;
 }
