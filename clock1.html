@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clock1</title>
+    <style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        width: 600px;
+        height: 600px;
+        position: relative;
+        margin:50px auto;
+        background: url("imgs/clockface.jpg");
+    }
+    #box div{
+        width: 30px;
+        height: 600px;
+        position: absolute;
+        left: 285px;
+    }
+    .hourHand{
+        background: url("imgs/hourhand.png");
+    }
+    .minHand{
+        background: url("imgs/minhand.png");
+    }
+    .secHand{
+        background: url("imgs/sechand.png");
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="hourHand"></div>
+        <div class="minHand"></div>
+        <div class="secHand"></div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/cssTools.js"></script>
+<script type="text/javascript">
+setInterval(watch,1000);
+function watch(){
+    var myTime=new Date();
+    let sDeg=myTime.getSeconds()*6;
+    let mDeg=myTime.getMinutes()*6+sDeg/60;
+    let hDeg=myTime.getHours()*30+mDeg/12;
+    $(".secHand")[0].style.cssText="transform:rotate("+sDeg+"deg)";
+    $(".minHand")[0].style.cssText = "transform:rotate("+mDeg+"deg)";
+    $(".hourHand")[0].style.cssText = "transform:rotate("+hDeg+"deg)";
+}
+
+</script>
