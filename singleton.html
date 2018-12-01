@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>singleton</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script type="text/javascript">
+    let Singleton=(function(){
+        function Map(width,height) {
+            this.width=width;
+            this.height=height;
+        }
+        var instance;
+        return {
+            getInstance:function(width,height){
+                if(instance==undefined){
+                    instance=new Map(width,height);
+                }else{
+                    instance.width=width;
+                    instance.height=height;
+                }
+                return instance;
+            }
+            
+        }
+    })();
+    let m1=Singleton.getInstance(100,200);
+    console.info(m1.width,m1.height);
+    let m2=Singleton.getInstance(200,300);
+    console.info(m1.width,m1.height);
+    console.info(m2.width,m2.height);
+</script>

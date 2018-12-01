@@ -75,9 +75,7 @@ function MirrorBox(bigBox, width, height, img, mirrorBoxWidth, mirrorBoxHeight, 
             that.mirrorBox.style.display = "none";
             that.showBox.style.display = "none";
         }
-
     };
-
     this.initUI();
     this.addEvent();
 }
